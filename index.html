@@ -1,120 +1,85 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda de Laura & Raul</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Fuentes personalizadas */
+        @font-face {
+            font-family: 'Tan Giok';
+            src: url('fonts/Tan-Giok.woff2') format('woff2');
+        }
 
-  <title>R+R Casamento</title>
-  <meta name="description" content="Site de casamento da Raissa e do Ricardo">
+        @font-face {
+            font-family: 'Cy Grotesk Key';
+            src: url('fonts/Cy-Grotesk-Key.woff2') format('woff2');
+        }
 
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        /* ANIMACIONES */
+        
+        /* Entrada desde la izquierda para los nombres */
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
-  <!-- For iPhone 4 with high-resolution Retina display: -->
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
-  <!-- For first-generation iPad: -->
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
-  <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+        /* Aparición suave (fade in) para la fecha */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
 
-  <link rel="shortcut icon" href="favicon.ico?v=1">
+        h1 {
+            font-family: 'Tan Giok', serif;
+            font-size: 100px !important;
+            line-height: 1;
+            /* Aplicamos la animación: duración 1.5s, suave */
+            animation: slideInLeft 1.5s ease-out forwards;
+        }
 
-  <link rel="stylesheet" href="css/normalize.min.css">
-  <link rel="stylesheet" href="css/main-1.6.css">
+        .fecha-boda {
+            font-family: 'Cy Grotesk Key', sans-serif;
+            font-size: 18px !important;
+            letter-spacing: 0.2em;
+            opacity: 0; /* Empieza invisible */
+            /* Animación: dura 1s, empieza tras 1.2s de espera */
+            animation: fadeIn 1s ease-out 1.2s forwards;
+        }
 
-  <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        /* Ajuste para móviles: si el texto es muy grande, baja el tamaño automáticamente */
+        @media (max-width: 768px) {
+            h1 { font-size: 60px !important; }
+        }
+    </style>
 </head>
-<body>
-<!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
+<body class="bg-white overflow-hidden">
 
-<div id="bg-image">
-  <img src="img/bg-pic-rings.jpg" alt="bg" />
-</div>
+    <header class="relative bg-cover bg-center bg-no-repeat h-screen flex items-center justify-center" style="background-image: url('hero-background.jpg');">
+        
+        <div class="absolute inset-0 bg-black opacity-20"></div>
 
-<div id="bg-container">
-  <div class="header-container">
-    <div id="heading" class="wrapper clearfix">
-      <nav id="nav">
-        <ul>
-          <li><a href="#wedding">CERIMÔNIA</a></li>
-          <li><a href="#gifts">PRESENTES</a></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
+        <div class="relative z-10 text-center px-4">
+            
+            <!-- Nombres animados -->
+            <h1 class="text-white tracking-tight">
+                LAURA & RAUL
+            </h1>
 
-  <div class="main-container">
-    <div class="main wrapper clearfix">
-      <header>
-        <div id="introtext">
-          <span class="head-ricardo">&nbsp;
-            Raissa
-            &amp;
-            Ricardo
-          </span>
-          <div class="date">2 de Abril de 2016</div>
+            <!-- Fecha animada con retraso -->
+            <p class="fecha-boda text-white mt-6 uppercase">
+                26.09.2026
+            </p>
+
         </div>
-      </header>
-
-      <div class="clearfix"></div>
-
-      <section id="wedding" class="clearfix">
-        <h1>Cerimônia</h1>
-
-        <div class="column full">
-          <h2>Data e horário</h2>
-          <p>A cerimônia será realizada no dia 2 de Abril de 2016, em um belo sábado, às 10 da manhã.</p>
-        </div><!--end column-->
-
-        <div class="column full">
-          <div class="hr-t"></div>
-          <div class="hr-b"></div>
-        </div>
-
-        <div class="column full">
-          <h2>Localização</h2>
-
-          <p>Igreja Nossa Senhora Aparecida, em Santa Bárbara d'Oeste - SP.</p>
-
-          <div id="gmap">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2085.2599717735297!2d-47.42448833854739!3d-22.75778547254757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0xd2f3afda3cdd48f3!2sIgreja+Matriz+de+Nossa+Senhora+Aparecida!5e0!3m2!1sen!2sau!4v1440918967778" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-          </div>
-        </div>
-      </section>
-
-      <section id="gifts" class="clearfix">
-        <h1>Presentes</h1>
-
-        <div class="column full">
-          <p>Para nós, o mais importante é a sua presença no casamento. No caso de você desejar nos dar um presente, nós pedimos que seja em dinheiro por conta do fato de nossa casa já estar montada e não morarmos no Brasil.</p>
-
-          <p>Conta removida por questões de segurança. Caso queira ainda nos presentear, por favor entre em contato. :-)</p>
-        </div><!--end column-->
-
-      </section>
-
-      <div style="height: 300px"></div>
-
-    </div> <!-- #main -->
-  </div> <!-- #main-container -->
-</div> <!-- #bg-container -->
-
-<script src="js/main-1.6.js"></script>
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-66924732-1', 'auto');
-  ga('send', 'pageview');
-</script>
+    </header>
 
 </body>
 </html>
-
