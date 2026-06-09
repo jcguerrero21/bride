@@ -58,19 +58,37 @@
         @media (max-width: 768px) {
             h1 { font-size: 60px !important; }
         }
+
+        /* Movimiento leve de la imagen de fondo hacia arriba */
+        @keyframes panUp {
+            0% {
+                transform: scale(1.05) translateY(2%);
+            }
+            100% {
+                transform: scale(1.05) translateY(-2%);
+            }
+        }
+
+        .bg-animate {
+            /* Movimiento de abajo hacia arriba durante unos segundos */
+            animation: panUp 6s ease-out forwards;
+        }
     </style>
 </head>
 <body class="bg-white overflow-hidden">
 
-    <header class="relative bg-cover bg-center bg-no-repeat h-screen flex items-center justify-center" style="background-image: url('hero-background.jpg');">
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
         
-        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <!-- Capa de imagen de fondo animada -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-animate" style="background-image: url('image.png');"></div>
+
+        <div class="absolute inset-0 bg-black opacity-20 z-0"></div>
 
         <div class="relative z-10 text-center px-4">
             
             <!-- Nombres animados -->
             <h1 class="text-white tracking-tight">
-                LAURA & RAUL + TEST
+                LAURA & RAUL
             </h1>
 
             <!-- Fecha animada con retraso -->
