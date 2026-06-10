@@ -31,7 +31,7 @@
             }
         }
 
-        /* Aparición suave (fade in) para la fecha */
+        /* Aparición suave (fade in) */
         @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(10px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -52,6 +52,20 @@
             opacity: 0; /* Empieza invisible */
             /* Animación: dura 1s, empieza tras 1.2s de espera */
             animation: fadeIn 1s ease-out 1.2s forwards;
+        }
+
+        .contador-boda {
+            font-family: 'Cy Grotesk Key', sans-serif;
+            opacity: 0; /* Empieza invisible */
+            /* Animación: aparece un poco después de la fecha (1.6s) */
+            animation: fadeIn 1s ease-out 1.6s forwards;
+        }
+
+        .texto-proximamente {
+            font-family: 'Cy Grotesk Key', sans-serif;
+            opacity: 0; /* Empieza invisible */
+            /* Animación: es lo último en aparecer (2.5s de espera) */
+            animation: fadeIn 1.5s ease-out 2.5s forwards;
         }
 
         /* Ajuste para móviles: si el texto es muy grande, baja el tamaño automáticamente */
@@ -79,25 +93,78 @@
 
     <header class="relative h-screen flex items-center justify-center overflow-hidden">
         
-        <!-- Capa de imagen de fondo animada -->
         <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-animate" style="background-image: url('image.png');"></div>
 
         <div class="absolute inset-0 bg-black opacity-20 z-0"></div>
 
-        <div class="relative z-10 text-center px-4">
+        <div class="relative z-10 text-center px-4 w-full">
             
-            <!-- Nombres animados -->
             <h1 class="text-white tracking-tight">
                 LAURA & RAUL
             </h1>
 
-            <!-- Fecha animada con retraso -->
             <p class="fecha-boda text-white mt-6 uppercase">
                 26.09.2026
             </p>
 
+            <div class="contador-boda text-white mt-12 flex justify-center space-x-6 md:space-x-12">
+                <div class="flex flex-col items-center">
+                    <span id="dias" class="text-4xl md:text-5xl tracking-widest">00</span>
+                    <span class="text-xs md:text-sm tracking-[0.3em] mt-2 uppercase">Días</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span id="horas" class="text-4xl md:text-5xl tracking-widest">00</span>
+                    <span class="text-xs md:text-sm tracking-[0.3em] mt-2 uppercase">Hrs</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span id="minutos" class="text-4xl md:text-5xl tracking-widest">00</span>
+                    <span class="text-xs md:text-sm tracking-[0.3em] mt-2 uppercase">Min</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span id="segundos" class="text-4xl md:text-5xl tracking-widest">00</span>
+                    <span class="text-xs md:text-sm tracking-[0.3em] mt-2 uppercase">Seg</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="absolute bottom-10 left-0 w-full text-center z-10 px-4">
+            <div class="texto-proximamente flex flex-col items-center">
+                <p class="text-white text-xs md:text-sm tracking-[0.3em] uppercase opacity-70">
+                    Pronto compartiremos más detalles
+                </p>
+                <span class="block w-8 h-[1px] bg-white opacity-40 mt-4"></span>
+            </div>
         </div>
     </header>
 
+    <script>
+        const fechaBoda = new Date("2026-09-26T00:00:00").getTime();
+
+        function actualizarContador() {
+            const ahora = new Date().getTime();
+            const distancia = fechaBoda - ahora;
+
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+            const formatoDosDigitos = (num) => num < 10 ? '0' + num : num;
+
+            document.getElementById("dias").innerText = formatoDosDigitos(dias);
+            document.getElementById("horas").innerText = formatoDosDigitos(horas);
+            document.getElementById("minutos").innerText = formatoDosDigitos(minutos);
+            document.getElementById("segundos").innerText = formatoDosDigitos(segundos);
+
+            if (distancia < 0) {
+                clearInterval(intervalo);
+                document.querySelector(".contador-boda").innerHTML = "<p class='text-xl tracking-[0.2em] uppercase'>¡Hoy es el gran día!</p>";
+            }
+        }
+
+        const intervalo = setInterval(actualizarContador, 1000);
+        actualizarContador();
+    </script>
 </body>
 </html>
