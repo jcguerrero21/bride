@@ -49,7 +49,19 @@
 (function(){
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.addEventListener('beforeunload', () => { window.scrollTo(0,0); });
-  window.addEventListener('load', () => { window.scrollTo({ top:0, left:0, behavior:'instant' }); });
+  window.addEventListener('load', () => {
+    // If the URL contains a hash (e.g. index.html#ayudanos) respect it and scroll to that element.
+    if (location.hash) {
+      const id = location.hash.slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        // use instant to mimic normal anchor navigation, but give browser a tick
+        setTimeout(() => el.scrollIntoView({ behavior: 'instant' in Element.prototype ? 'instant' : 'auto' }), 10);
+        return;
+      }
+    }
+    window.scrollTo({ top:0, left:0, behavior:'instant' });
+  });
 })();
 
 // Burger menu toggle
