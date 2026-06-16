@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="light" lang="es" style="">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Santuario de Nuestra Señora de la Salud | Elena &amp; Julián</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap"
+        rel="stylesheet">
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1a1c1a",
+                        "surface-variant": "#e3e2e0",
+                        "surface-container-high": "#e9e8e5",
+                        "on-tertiary-fixed": "#0b2013",
+                        "surface-container": "#efeeeb",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary": "#4d6453",
+                        "on-secondary-fixed": "#2e1506",
+                        "surface-container-highest": "#e3e2e0",
+                        "surface-bright": "#faf9f6",
+                        "secondary-container": "#fecdb4",
+                        "primary-fixed": "#f0e0c8",
+                        "primary": "#685d4a",
+                        "secondary-fixed": "#ffdbca",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#221b0b",
+                        "inverse-primary": "#d3c5ad",
+                        "tertiary-fixed-dim": "#b4cdb8",
+                        "on-secondary-container": "#795541",
+                        "error": "#ba1a1a",
+                        "outline": "#7d766c",
+                        "on-secondary-fixed-variant": "#603f2d",
+                        "on-surface-variant": "#4b463d",
+                        "inverse-on-surface": "#f2f1ee",
+                        "on-surface": "#1a1c1a",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#d6efda",
+                        "surface-tint": "#685d4a",
+                        "secondary": "#7a5642",
+                        "on-tertiary-container": "#576e5c",
+                        "tertiary-fixed": "#d0e9d4",
+                        "surface-dim": "#dbdad7",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#ecbda4",
+                        "on-primary-fixed-variant": "#4f4533",
+                        "surface": "#faf9f6",
+                        "on-primary-container": "#726753",
+                        "outline-variant": "#cec5ba",
+                        "inverse-surface": "#2f312f",
+                        "on-tertiary-fixed-variant": "#364c3c",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#f7e7ce",
+                        "primary-fixed-dim": "#d3c5ad",
+                        "background": "#faf9f6",
+                        "surface-container-low": "#f4f3f1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "container-max": "1140px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+    <!-- TopAppBar -->
+    <header
+        class="fixed top-0 w-full z-50 backdrop-blur-md bg-background/80 border-b border-outline/10 flex justify-between items-center px-margin-mobile h-16">
+        <button class="text-primary active:opacity-70 transition-opacity">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+    </header>
+    <main class="pt-16 pb-24">
+        <!-- Hero Section -->
+
+        <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <div class="w-full h-full bg-cover bg-center scrolling-bg"
+                    data-alt="High-resolution, professional architectural photography of Mas de Can Riera. Enhance the colors, lighting, and detail of the original building. The sky should be a clear, soft blue, and the stone textures of the farmhouse should be sharp and warm. Maintain the exact same perspective and structure of the building as in the reference image, but with a more polished, high-end wedding venue aesthetic. No people, no blur."
+                    style="background-image: url(&quot;https://lh3.googleusercontent.com/gps-cs-s/APNQkAEUQiPdcRvS4-uw9zb1QTiqyz3f24wcZMrdQjWdTNVrfGAoPjEiYEawqe6vIiqH3_bpgZrR_tnrutKX5OrHhyp_x3mtq7UHNbmpCMq0QzzjmMQHCK0D_H-yVire8Vcxoi3pEXI&quot;);">
+                </div>
+
+            </div>
+            <div class="relative z-10 text-center px-margin-mobile p-6 rounded-md">
+                <span class="font-label-caps text-label-caps text-white mb-4 block tracking-[0.2em] uppercase">LA
+                    CEREMONIA</span>
+                <h1
+                    class="font-display-lg-mobile text-display-lg-mobile text-white text-on-primary-fixed drop-shadow-sm">
+                    Santuario de Nuestra Señora de la
+                    Salud</h1>
+            </div>
+        </section>
+        <!-- <section class="relative h-[80vh] w-full overflow-hidden flex items-start">
+            <img alt="Santuario de la Salud interior" class="absolute inset-0 w-full h-full object-cover"
+                data-alt="A grand, high-resolution interior view of a historic XIV-century Spanish sanctuary with soaring stone arches and intricate mosaics. Soft, ethereal morning sunlight streams through high windows, casting long shadows across the polished marble floor. The atmosphere is quiet, sacred, and elegant, dominated by warm cream tones and earthy stone textures. The composition is focused on the architectural symmetry of the nave leading toward the altar."
+                src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAEUQiPdcRvS4-uw9zb1QTiqyz3f24wcZMrdQjWdTNVrfGAoPjEiYEawqe6vIiqH3_bpgZrR_tnrutKX5OrHhyp_x3mtq7UHNbmpCMq0QzzjmMQHCK0D_H-yVire8Vcxoi3pEXI">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent transition-all duration-1000 opacity-100 translate-y-0">
+            </div>
+            <div
+                class="relative px-margin-mobile pt-14 pb-8 w-full text-center transition-all duration-1000 opacity-100 translate-y-0">
+                <span class="font-label-caps text-label-caps text-white mb-4 block tracking-[0.2em]">LA
+                    CEREMONIA</span>
+                <h2 class="font-display-lg-mobile text-display-lg-mobile text-white">Santuario de Nuestra Señora de la
+                    Salud</h2>
+            </div>
+        </section> -->
+        <!-- Conoce Section -->
+        <section class="px-margin-mobile py-20 bg-surface">
+            <div class="max-w-md mx-auto text-center transition-all duration-1000 opacity-100 translate-y-0">
+                <div class="w-12 h-px bg-outline/30 mx-auto mb-8"></div>
+                <h3 class="font-headline-sm text-headline-sm text-primary mb-6">Conoce su historia</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Ubicado en un entorno de paz en Sabadell, este santuario tiene sus raíces en una ermita del siglo
+                    XIV. Su estructura actual es fruto de la reforma de 1924, que fusionó la tradición románica con una
+                    visión renovada, convirtiéndolo en un refugio de solemnidad y belleza para nuestra unión.
+                </p>
+                <div class="w-12 h-px bg-outline/30 mx-auto mt-8"></div>
+            </div>
+        </section>
+        <!-- Horarios Section -->
+        <section class="px-margin-mobile py-16 bg-surface-container-low">
+            <h3 class="font-label-caps text-label-caps text-primary text-center mb-12 tracking-[0.3em]">HORARIOS DEL DÍA
+            </h3>
+            <div class="space-y-12 transition-all duration-1000 opacity-100 translate-y-0">
+                <div class="flex flex-col items-center text-center">
+                    <span class="font-headline-md text-headline-md text-secondary">12:00</span>
+                    <span class="font-label-caps text-label-caps text-on-surface-variant mt-2">INICIO DE LA
+                        CEREMONIA</span>
+                    <div class="h-8 w-px bg-outline-variant mt-4"></div>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <span class="font-headline-md text-headline-md text-secondary">13:00</span>
+                    <span class="font-label-caps text-label-caps text-on-surface-variant mt-2">SESIÓN DE
+                        FOTOGRAFÍA</span>
+                    <small class="block text-[12px] text-on-surface-variant mt-1">(orientativo)</small>
+                    <div class="h-8 w-px bg-outline-variant mt-4"></div>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <span class="font-headline-md text-headline-md text-secondary">13:30</span>
+                    <span class="font-label-caps text-label-caps text-on-surface-variant mt-2">TRASLADO A EL MAS DE CAN
+                        RIERA</span>
+                </div>
+            </div>
+        </section>
+        <!-- Qué debes saber Section -->
+        <section class="px-margin-mobile py-20 border-y border-outline/5">
+            <div
+                class="bg-surface-container-lowest p-8 border border-outline/10 transition-all duration-1000 opacity-100 translate-y-0">
+                <h3 class="font-headline-sm text-headline-sm text-primary mb-8 text-center">Qué debes saber</h3>
+                <ul class="space-y-6">
+                    <li class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-[20px] mt-1">schedule</span>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Se ruega máxima puntualidad para el
+                            inicio del rito.</p>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-[20px] mt-1">notifications_off</span>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Respetar las normas del espacio.
+                        </p>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-[20px] mt-1">celebration</span>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Solo se podrá lanzar arroz (por
+                            favor, evitar confeti o pétalos artificiales).</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- Cómo llegar Section -->
+        <section class="px-margin-mobile py-20 bg-surface">
+            <h3 class="font-headline-sm text-headline-sm text-primary mb-2">Cómo llegar</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-8">Santuari de la Mare de Déu de la Salut,
+                08202 Sabadell, Barcelona.</p>
+            <!-- Map Placeholder -->
+            <div
+                class="aspect-video w-full bg-surface-container mb-8 overflow-hidden border border-outline/10 group relative transition-all duration-1000 opacity-100 translate-y-0">
+                <iframe src="https://www.google.com/maps?q=41.5628931,2.123265&z=17&output=embed" width="100%"
+                    height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="grid grid-cols-1 gap-8 mb-10 transition-all duration-1000 opacity-100 translate-y-0">
+            </div>
+            <a class="block w-full text-center bg-primary text-on-primary font-label-caps text-label-caps py-5 px-8 tracking-[0.2em] hover:bg-primary/90 active:scale-[0.98] transition-all"
+                href="https://www.google.com/maps/place/Santuario+de+Nuestra+Se%C3%B1ora+de+la+Salud/@41.5628979,2.1229366,106m/data=!3m1!1e3!4m6!3m5!1s0x12a4951ae37d6b03:0x21e0e1c3040549a!8m2!3d41.5628931!4d2.123265!16s%2Fg%2F1hb_g5wl1?entry=ttu&g_ep=EgoyMDI2MDYxMy4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank">
+                ABRIR EN GOOGLE MAPS
+            </a>
+
+
+            <div>
+                <h4 class="font-label-caps text-label-caps text-primary mt-12">APARCAMIENTO</h4>
+                <p class="font-body-md text-body-md text-on-surface-variant">Zona de parking público disponible
+                    junto al santuario.</p>
+            </div>
+        </section>
+        <!-- Footer -->
+
+    </main>
+    <!-- BottomNavBar -->
+
+    <script src="scripts.js" defer></script>
+
+
+</body>
+
+</html>

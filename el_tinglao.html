@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="light" lang="es" style="">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>La Finca - Laura &amp; Raúl</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap"
+        rel="stylesheet">
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f4f3f1",
+                        "secondary-fixed": "#ffdbca",
+                        "on-background": "#1a1c1a",
+                        "tertiary-fixed": "#d0e9d4",
+                        "surface-variant": "#e3e2e0",
+                        "on-primary-container": "#726753",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f312f",
+                        "background": "#faf9f6",
+                        "primary-container": "#f7e7ce",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#d6efda",
+                        "surface-container": "#efeeeb",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#faf9f6",
+                        "secondary-fixed-dim": "#ecbda4",
+                        "on-tertiary-fixed-variant": "#364c3c",
+                        "error-container": "#ffdad6",
+                        "outline": "#7d766c",
+                        "primary": "#685d4a",
+                        "on-primary-fixed": "#221b0b",
+                        "on-tertiary-container": "#576e5c",
+                        "secondary-container": "#fecdb4",
+                        "tertiary-fixed-dim": "#b4cdb8",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary": "#7a5642",
+                        "inverse-primary": "#d3c5ad",
+                        "tertiary": "#4d6453",
+                        "surface-container-highest": "#e3e2e0",
+                        "surface-tint": "#685d4a",
+                        "on-secondary-container": "#795541",
+                        "on-primary-fixed-variant": "#4f4533",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#0b2013",
+                        "on-secondary-fixed": "#2e1506",
+                        "on-secondary-fixed-variant": "#603f2d",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#f0e0c8",
+                        "inverse-on-surface": "#f2f1ee",
+                        "primary-fixed-dim": "#d3c5ad",
+                        "surface-container-high": "#e9e8e5",
+                        "surface-dim": "#dbdad7",
+                        "surface": "#faf9f6",
+                        "on-surface": "#1a1c1a",
+                        "outline-variant": "#cec5ba",
+                        "on-surface-variant": "#4b463d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "container-max": "1140px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["36px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background text-on-surface font-body-md antialiased">
+    <!-- 1. TopAppBar (Shared Component Logic) -->
+    <header
+        class="fixed top-0 w-full z-50 backdrop-blur-md bg-background/80 border-b border-outline/10 flex justify-between items-center px-margin-mobile h-16">
+        <!-- Burger menu button -->
+        <button id="burgerBtn" class="burger-btn" aria-label="Abrir menú">
+            <span class="burger-lines" aria-hidden="true"></span>
+        </button>
+
+        <!-- Menu overlay -->
+        <nav id="menuOverlay" class="menu-overlay" aria-hidden="true">
+            <div class="menu-title">Menu</div>
+            <a href="el_tinglao.html" class="menu-link">La Finca</a>
+            <a href="el_santuario.html" class="menu-link">El Santuario</a>
+            <a href="#ayudanos" class="menu-link">Ayúdanos</a>
+            <div style="flex:1"></div>
+            <a href="#" id="closeMenu" style="align-self:flex-start;"></a>
+        </nav>
+    </header>
+
+    <script src="scripts.js" defer></script>
+
+    <main class="pt-16 pb-24">
+        <!-- 2. Hero Section -->
+        <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <div class="w-full h-full bg-cover bg-center scrolling-bg"
+                    data-alt="High-resolution, professional architectural photography of Mas de Can Riera. Enhance the colors, lighting, and detail of the original building. The sky should be a clear, soft blue, and the stone textures of the farmhouse should be sharp and warm. Maintain the exact same perspective and structure of the building as in the reference image, but with a more polished, high-end wedding venue aesthetic. No people, no blur."
+                    style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBUnsQvhX94CPy4Tsh70ONxcKqOnr8-TzZ3UxbPeyB20DPTdmGvvTjLYiHMZKOBbfSiURe8QAKQGl2xwLim_xMxZKGXotkxCxmAT5EYN5eWkGWfPUPHITFfYTwY6im2AsXZnCF9YqDcra3e46xJ5RL9XRJyP5GY8jsWIoU-1v3gszEglUv7_oxJl7FXcIDxh0V4jT6O5y1oTyy9lTOWAtQ6K0EbO37dQvZxCP5mnzitPKh9tmZQD686l-tPsCvBnZQhNHEV_GSsdEtT&quot;);">
+                </div>
+
+            </div>
+            <div class="relative z-10 text-center px-margin-mobile p-6 rounded-md">
+                <span
+                    class="font-label-caps text-label-caps text-white mb-4 block tracking-[0.3em] uppercase">Bienvenidos
+                    a</span>
+                <h1
+                    class="font-display-lg-mobile text-display-lg-mobile text-white text-on-primary-fixed drop-shadow-sm">
+                    Mas de
+                    Can Riera</h1>
+            </div>
+        </section>
+        <!-- 3. Sección "El Convite" -->
+        <section class="py-20 px-margin-mobile bg-background flex flex-col items-center text-center">
+            <div class="w-full max-w-md border border-outline/10 p-10 bg-surface-container-lowest editorial-shadow">
+                <h2 class="font-headline-sm text-headline-sm text-primary mb-6">El Convite</h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant mb-8 leading-relaxed">Y como no podia ser de
+                    otra manera, después de la ceremonia estaremos encantados de poderos dar la mejor experiencia en el
+                    Mas de Can Riera.</p>
+                <div class="flex flex-col items-center gap-2 mb-10">
+
+
+
+                </div>
+
+            </div>
+        </section>
+        <section class="py-16 px-margin-mobile bg-surface-container-lowest border-t border-outline/5">
+            <div class="max-w-md mx-auto">
+                <div class="mb-10 overflow-hidden rounded-sm border border-outline/10">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxXqsszJq5cBIugiqqbFU27kqdK362CwbOecXbuG9IpaBm4adxItt-8hkG1l9A7M0pv7BVeFEhc_-mQROSYg70aAxw0y9WUzt_cAecRJGxLujmhvelYHH40ZKdVr8P_f_u6300Bmfqnukn4-7V5_A5DGj40-_2jj_dU43dfdVLET1scoJK7G1A22VdHBKg0e8zWxPc-5Vdw63J-JPPDwU0U_uZaHEHiUCZUTbE0nxf6KDieBaGYNXm8n8sLw1Vww2-78XWmZg44nBF"
+                        alt="Ilustración de celebración" class="w-full h-auto object-cover">
+                </div>
+                <div class="text-center mb-8">
+                    <h2 class="font-headline-sm text-headline-sm text-primary mb-2">Horarios</h2>
+                    <div class="w-12 h-px bg-primary/20 mx-auto"></div>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <div class="flex items-center justify-between border-b border-outline/5 pb-4">
+                        <span class="font-headline-sm text-primary">14:00h</span>
+                        <span class="font-body-lg text-on-surface-variant uppercase tracking-widest">Inicio
+                            cocktel</span>
+                    </div>
+                    <div class="flex items-center justify-between border-b border-outline/5 pb-4">
+                        <span class="font-headline-sm text-primary">18:30h</span>
+                        <span class="font-body-lg text-on-surface-variant uppercase tracking-widest text-right">Inicio
+                            de la fiesta</span>
+                    </div>
+                    <div class="flex items-center justify-between border-b border-outline/5 pb-4">
+                        <span class="font-headline-sm text-primary">23:00h</span>
+                        <span class="font-body-lg text-on-surface-variant uppercase tracking-widest">Fin de
+                            fiestas</span>
+                    </div>
+                </div>
+                <p class="mt-8 text-center font-body-md text-on-surface-variant/60 italic">
+                    Los horarios pueden estar sujetos a variación.
+                </p>
+            </div>
+        </section>
+        <!-- 4. Sección de Información Práctica -->
+        <section class="py-16 px-margin-mobile bg-surface-container-low border-t border-b border-outline/5">
+            <div class="max-w-md mx-auto">
+                <h2 class="font-headline-sm text-headline-sm text-primary mb-8 text-center">Información de interés</h2>
+                <ul class="flex flex-col gap-6">
+                    <li class="flex gap-4">
+                        <span class="material-symbols-outlined text-primary shrink-0">local_parking</span>
+                        <p class="font-body-md text-on-surface-variant">El Mas de Can Riera dispone de parking privado
+                            gratuito para todos aquellos invitados que utilicen el servicio de autocar.</p>
+                    </li>
+                    <li class="flex gap-4">
+                        <span class="material-symbols-outlined text-primary shrink-0">child_care</span>
+                        <p class="font-body-md text-on-surface-variant">Se habilitará una sala especial para todos
+                            aquellos invitados que asistan con bebés, para tener un espacio confortable.</p>
+                    </li>
+                    <li class="flex gap-4">
+                        <span class="material-symbols-outlined text-primary shrink-0">gavel</span>
+                        <p class="font-body-md text-on-surface-variant">Se deberá de respetar las normas del espacio.
+                        </p>
+                    </li>
+                    <li class="flex gap-4">
+                        <span class="material-symbols-outlined text-primary shrink-0">restaurant</span>
+                        <p class="font-body-md text-on-surface-variant">Todos aquellos invitados con alergias,
+                            intolerancias, etc... nada más llegar, deberán de dirigirse a cualquiera de los empleados de
+                            la finca y notificarlos. Dicho personal estará informado préviamente.</p>
+                    </li>
+
+                </ul>
+            </div>
+        </section>
+        <!-- Asymmetric Detail (Editorial style) -->
+        <section class="py-20 grid grid-cols-4 gap-4 px-margin-mobile overflow-hidden">
+            <div class="col-span-4 h-96 bg-surface-container-high rounded-sm overflow-hidden border border-outline/10">
+                <div class="w-full h-full">
+                    <iframe src="https://www.google.com/maps?q=41.5797781,2.127831&z=15&output=embed" width="100%"
+                        height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+        </section>
+        <section class="py-16 px-margin-mobile bg-background border-t border-outline/5">
+            <div class="max-w-md mx-auto">
+                <div class="text-center mb-10">
+                    <h2 class="font-headline-sm text-headline-sm text-primary mb-2">Cómo llegar</h2>
+                    <div class="w-12 h-px bg-primary/20 mx-auto"></div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="font-label-caps text-label-caps text-primary mb-2 uppercase tracking-widest">Dirección
+                    </h3>
+                    <p class="font-body-md text-on-surface-variant">Cami de Can Riera, s/n, 08184 Palau-solità i
+                        Plegamans, Barcelona</p>
+                </div>
+
+
+
+                <div class="text-center">
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Mas+de+Can+Riera+Palau-solità+i+Plegamans"
+                        target="_blank"
+                        class="inline-block border border-primary text-primary px-8 py-3 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors">
+                        Abrir en Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- 5. Bottom Navigation (Active: "La Finca") -->
+
+    <!-- Footer (Shared Component Logic) -->
+
+    <script>
+        // Simple parallax-ish effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroBg = document.querySelector('.scrolling-bg');
+            if (heroBg) {
+                heroBg.style.transform = `translateY(${scrolled * 0.1}px) scale(1.05)`;
+            }
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>

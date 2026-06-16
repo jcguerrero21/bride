@@ -112,6 +112,21 @@
 
     <header class="relative h-screen flex items-center justify-center overflow-hidden">
 
+        <!-- Burger menu button -->
+        <button id="burgerBtn" class="burger-btn" aria-label="Abrir menú">
+            <span class="burger-lines" aria-hidden="true"></span>
+        </button>
+
+        <!-- Menu overlay -->
+        <nav id="menuOverlay" class="menu-overlay" aria-hidden="true">
+            <div class="menu-title">Menu</div>
+            <a href="el_tinglao.html" class="menu-link">La Finca</a>
+            <a href="el_santuario.html" class="menu-link">El Santuario</a>
+            <a href="#ayudanos" class="menu-link">Ayúdanos</a>
+            <div style="flex:1"></div>
+            <a href="#" id="closeMenu" style="align-self:flex-start;"></a>
+        </nav>
+
         <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-animate hero-bg"></div>
 
         <div class="absolute inset-0 bg-black opacity-20 z-0"></div>
@@ -147,13 +162,20 @@
 
         </div>
 
-        <div class="absolute bottom-10 left-0 w-full text-center z-10 px-4">
-            <div class="texto-proximamente flex flex-col items-center">
-                <p class="text-white text-xs md:text-sm tracking-[0.3em] uppercase opacity-70">
-                    Pronto compartiremos más detalles
-                </p>
-                <span class="block w-8 h-[1px] bg-white opacity-40 mt-4"></span>
+        <div class="absolute bottom-10 left-0 w-full text-center z-10 px-4 mb-4">
+            <div class="rsvp-area fade-in delay-2s">
+                <div class="blink-arrow" aria-hidden="true">&#8595;</div>
+                <a class="rsvp-button"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSeZTTmGRO34Bv7KVdvUvc6ruxV9Gdx783hJRUxXhj8PGx8yFQ/viewform"
+                    target="_blank" rel="noopener noreferrer">Formulario de asistencia</a>
             </div>
+        </div>
+
+        <div class="absolute bottom-4 left-0 w-full text-center z-10 px-4">
+            <a class="more-details fade-in delay-26s" href="#general-info-group" aria-label="Más detalles - ir abajo">
+                <span>Más detalles</span>
+                <span class="md-arrow">&#8595;</span>
+            </a>
         </div>
 
     </header>
@@ -392,7 +414,8 @@
                 </div>
                 <div class="space-y-8">
                     <div class="flex items-center gap-4 mb-4"><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
-                        <h2 class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase">Finca</h2>
+                        <h2 class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase">
+                            Finca</h2>
                         <span class="h-[1px] flex-1 bg-outline-variant/30"></span>
                     </div>
                     <div class="px-4 space-y-4">
@@ -413,7 +436,7 @@
                 </div>
             </div>
         </section>
-        <section
+        <section id="ayudanos"
             class="px-margin-mobile py-12 transition-all duration-700 opacity-100 translate-y-0 bg-primary-container/30 rounded-xl mx-margin-mobile space-y-12">
             <div class="text-center mb-8">
                 <h2 class="font-display-lg-mobile text-display-lg-mobile text-primary mb-2 uppercase">¡OS NECESITAMOS!
@@ -462,56 +485,7 @@
         </section>
     </main>
 
-    <!-- Scrips JS -->
-    <script>
-        // Simple scroll animation for reveal effects
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100', 'translate-y-0');
-                    entry.target.classList.remove('opacity-0', 'translate-y-10');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
-            observer.observe(section);
-        });
-    </script>
-
-    <script>
-        const fechaBoda = new Date("2026-09-26T00:00:00").getTime();
-
-        function actualizarContador() {
-            const ahora = new Date().getTime();
-            const distancia = fechaBoda - ahora;
-
-            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-
-            const formatoDosDigitos = (num) => num < 10 ? '0' + num : num;
-
-            document.getElementById("dias").innerText = formatoDosDigitos(dias);
-            document.getElementById("horas").innerText = formatoDosDigitos(horas);
-            document.getElementById("minutos").innerText = formatoDosDigitos(minutos);
-            document.getElementById("segundos").innerText = formatoDosDigitos(segundos);
-
-            if (distancia < 0) {
-                clearInterval(intervalo);
-                document.querySelector(".contador-boda").innerHTML = "<p class='text-xl tracking-[0.2em] uppercase'>¡Hoy es el gran día!</p>";
-            }
-        }
-
-        const intervalo = setInterval(actualizarContador, 1000);
-        actualizarContador();
-    </script>
+    <script src="scripts.js" defer></script>
 </body>
 
 </html>
