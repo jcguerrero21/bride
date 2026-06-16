@@ -229,7 +229,7 @@ html {
     position: fixed;
     top: 18px;
     right: 20px;
-    z-index: 60;
+    z-index: 100;
     width: 44px;
     height: 44px;
     display: inline-flex;
@@ -294,7 +294,7 @@ html {
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
     transform: translateX(110%);
     transition: transform 0.32s cubic-bezier(.2, .9, .2, 1);
-    z-index: 55;
+    z-index: 110;
     padding: 28px 20px;
     display: flex;
     flex-direction: column;
@@ -392,4 +392,19 @@ html {
     /* match the final state previously applied by JS: slightly scaled and positioned */
     transform: translateY(0) scale(1.05);
     will-change: transform;
+}
+
+/* Pulse (heartbeat) animation every 2s */
+@keyframes pulseBeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.06); }
+    40% { transform: scale(0.98); }
+    60% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+#downloadApp {
+    display: inline-block;
+    transform-origin: center;
+    animation: pulseBeat 2s ease-in-out infinite;
 }

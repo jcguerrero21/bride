@@ -20,6 +20,24 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Page-specific full-screen overlay menu for el_santuario.html */
+        header { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; }
+        .burger-btn { z-index: 10001 !important; }
+        /* Make menu overlay cover entire viewport and slide from top */
+        .menu-overlay {
+            position: fixed; inset: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(180deg, #f7eede, #f2e7d3);
+            transform: translateY(-8%);
+            transition: transform 320ms cubic-bezier(.2,.9,.2,1), opacity 200ms;
+            z-index: 2147483646; display:flex; flex-direction:column; padding:48px 28px; opacity:0;
+        }
+        .menu-overlay.open { transform: translateY(0); opacity:1; }
+        /* Transparent backdrop (no darkening) */
+        .menu-backdrop { position: fixed; inset:0; background: transparent; z-index: 2147483645; }
+        body.menu-open { overflow: hidden; }
+        .scrolling-bg { will-change: transform; z-index:0; }
+    </style>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -116,9 +134,20 @@
     <!-- TopAppBar -->
     <header
         class="fixed top-0 w-full z-50 backdrop-blur-md bg-background/80 border-b border-outline/10 flex justify-between items-center px-margin-mobile h-16">
-        <button class="text-primary active:opacity-70 transition-opacity">
-            <span class="material-symbols-outlined">menu</span>
+        <!-- Burger menu button -->
+        <button id="burgerBtn" class="burger-btn" aria-label="Abrir menú">
+            <span class="burger-lines" aria-hidden="true"></span>
         </button>
+
+        <!-- Menu overlay -->
+        <nav id="menuOverlay" class="menu-overlay" aria-hidden="true"
+            style="background: linear-gradient(180deg, #f7eede, #f2e7d3);">
+            <div class="menu-title">Menu</div>
+            <a href="./index.html" class="menu-link">Página Principal</a>
+            <a href="./el_tinglao.html" class="menu-link">La finca</a>
+            <div style="flex:1"></div>
+            <a href="javascript:void(0)" id="closeMenu" style="align-self:flex-start;"></a>
+        </nav>
     </header>
     <main class="pt-16 pb-24">
         <!-- Hero Section -->
@@ -141,21 +170,6 @@
                     Salud</h1>
             </div>
         </section>
-        <!-- <section class="relative h-[80vh] w-full overflow-hidden flex items-start">
-            <img alt="Santuario de la Salud interior" class="absolute inset-0 w-full h-full object-cover"
-                data-alt="A grand, high-resolution interior view of a historic XIV-century Spanish sanctuary with soaring stone arches and intricate mosaics. Soft, ethereal morning sunlight streams through high windows, casting long shadows across the polished marble floor. The atmosphere is quiet, sacred, and elegant, dominated by warm cream tones and earthy stone textures. The composition is focused on the architectural symmetry of the nave leading toward the altar."
-                src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAEUQiPdcRvS4-uw9zb1QTiqyz3f24wcZMrdQjWdTNVrfGAoPjEiYEawqe6vIiqH3_bpgZrR_tnrutKX5OrHhyp_x3mtq7UHNbmpCMq0QzzjmMQHCK0D_H-yVire8Vcxoi3pEXI">
-            <div
-                class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent transition-all duration-1000 opacity-100 translate-y-0">
-            </div>
-            <div
-                class="relative px-margin-mobile pt-14 pb-8 w-full text-center transition-all duration-1000 opacity-100 translate-y-0">
-                <span class="font-label-caps text-label-caps text-white mb-4 block tracking-[0.2em]">LA
-                    CEREMONIA</span>
-                <h2 class="font-display-lg-mobile text-display-lg-mobile text-white">Santuario de Nuestra Señora de la
-                    Salud</h2>
-            </div>
-        </section> -->
         <!-- Conoce Section -->
         <section class="px-margin-mobile py-20 bg-surface">
             <div class="max-w-md mx-auto text-center transition-all duration-1000 opacity-100 translate-y-0">
@@ -198,7 +212,7 @@
         <section class="px-margin-mobile py-20 border-y border-outline/5">
             <div
                 class="bg-surface-container-lowest p-8 border border-outline/10 transition-all duration-1000 opacity-100 translate-y-0">
-                <h3 class="font-headline-sm text-headline-sm text-primary mb-8 text-center">Qué debes saber</h3>
+                <h3 class="font-headline-sm text-headline-sm text-primary mb-5 text-center">Qué debes saber</h3>
                 <ul class="space-y-6">
                     <li class="flex items-start gap-4">
                         <span class="material-symbols-outlined text-primary text-[20px] mt-1">schedule</span>
@@ -251,6 +265,58 @@
     <!-- BottomNavBar -->
 
     <script src="scripts.js" defer></script>
+
+    <script>
+        // Local menu logic: full-screen overlay for this page
+        (function(){
+            const btn = document.getElementById('burgerBtn');
+            const overlay = document.getElementById('menuOverlay');
+            const close = document.getElementById('closeMenu');
+            if (!btn || !overlay) return;
+            let backdrop = null;
+            function createBackdrop(){
+                if (backdrop) return backdrop;
+                backdrop = document.createElement('div');
+                backdrop.className = 'menu-backdrop';
+                backdrop.addEventListener('click', closeMenu);
+                return backdrop;
+            }
+            function openMenu(){
+                document.body.appendChild(createBackdrop());
+                overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); btn.classList.add('open');
+                document.body.classList.add('menu-open');
+            }
+            function closeMenu(){
+                overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); btn.classList.remove('open');
+                document.body.classList.remove('menu-open');
+                if (backdrop && backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
+            }
+            btn.addEventListener('click', ()=>{ if (overlay.classList.contains('open')) closeMenu(); else openMenu(); });
+            if (close) close.addEventListener('click',(e)=>{ e.preventDefault(); closeMenu(); });
+            overlay.querySelectorAll('a').forEach(a=>{
+                if (a.id === 'closeMenu') return; // skip the close control
+                a.addEventListener('click', (e)=>{
+                    const href = a.getAttribute('href')||''; const target = a.getAttribute('target');
+                    const isExternal = /^https?:\/\//i.test(href);
+                    // let truly external links or those opening in new tab behave normally
+                    if (isExternal || target === '_blank') return;
+                    e.preventDefault();
+                    closeMenu();
+                    // navigate after menu closes so transition is visible and avoid unexpected redirects
+                    setTimeout(()=>{
+                        if (href.startsWith('#')){
+                            const el = document.querySelector(href);
+                            if (el) el.scrollIntoView({behavior:'smooth'});
+                            else window.location.hash = href;
+                        } else {
+                            window.location.href = href;
+                        }
+                    }, 160);
+                });
+            });
+            document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeMenu(); });
+        })();
+    </script>
 
 
 </body>

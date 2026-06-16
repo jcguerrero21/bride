@@ -15,8 +15,13 @@
   });
 })();
 
-// Countdown
+// Countdown (only run on pages that include countdown elements)
 (function(){
+  const diasEl = document.getElementById("dias");
+  const horasEl = document.getElementById("horas");
+  const minutosEl = document.getElementById("minutos");
+  const segundosEl = document.getElementById("segundos");
+  if (!diasEl || !horasEl || !minutosEl || !segundosEl) return;
   const fechaBoda = new Date("2026-09-26T00:00:00").getTime();
   function actualizarContador() {
     const ahora = new Date().getTime();
@@ -26,10 +31,10 @@
     const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
     const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
     const formatoDosDigitos = (num) => num < 10 ? '0' + num : num;
-    document.getElementById("dias").innerText = formatoDosDigitos(dias);
-    document.getElementById("horas").innerText = formatoDosDigitos(horas);
-    document.getElementById("minutos").innerText = formatoDosDigitos(minutos);
-    document.getElementById("segundos").innerText = formatoDosDigitos(segundos);
+    diasEl.innerText = formatoDosDigitos(dias);
+    horasEl.innerText = formatoDosDigitos(horas);
+    minutosEl.innerText = formatoDosDigitos(minutos);
+    segundosEl.innerText = formatoDosDigitos(segundos);
     if (distancia < 0) {
       clearInterval(intervalo);
       const cont = document.querySelector(".contador-boda");
@@ -53,8 +58,23 @@
   const overlay = document.getElementById('menuOverlay');
   const close = document.getElementById('closeMenu');
   if (!btn || !overlay) return;
-  function openMenu() { overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); btn.classList.add('open'); }
-  function closeMenu() { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); btn.classList.remove('open'); }
+  // manage backdrop element so menu overlays all page content
+  let backdrop = null;
+  function createBackdrop() {
+    if (backdrop) return backdrop;
+    backdrop = document.createElement('div');
+    backdrop.className = 'menu-backdrop';
+    backdrop.addEventListener('click', closeMenu);
+    return backdrop;
+  }
+  function openMenu() {
+    document.body.appendChild(createBackdrop());
+    overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); btn.classList.add('open');
+  }
+  function closeMenu() {
+    overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); btn.classList.remove('open');
+    if (backdrop && backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
+  }
   btn.addEventListener('click', () => { if (overlay.classList.contains('open')) closeMenu(); else openMenu(); });
   if (close) close.addEventListener('click', (e) => { e.preventDefault(); closeMenu(); });
   // close when clicking links inside the overlay (skip external/new-tab links)
