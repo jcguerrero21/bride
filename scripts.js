@@ -56,8 +56,9 @@
 (function () {
   const btn = document.getElementById('burgerBtn');
   const overlay = document.getElementById('menuOverlay');
-  const close = document.getElementById('closeMenu');
   if (!btn || !overlay) return;
+  // DEBUG flag (false for normal behavior)
+  window.__MENU_DEBUG = false;
   // manage backdrop element so menu overlays all page content
   let backdrop = null;
   function createBackdrop() {
@@ -70,22 +71,30 @@
   function openMenu() {
     document.body.appendChild(createBackdrop());
     overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); btn.classList.add('open');
+    // prevent body scroll like el_tinglao
+    document.body.classList.add('menu-open');
   }
   function closeMenu() {
     overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); btn.classList.remove('open');
+    document.body.classList.remove('menu-open');
     if (backdrop && backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
+    backdrop = null;
   }
   btn.addEventListener('click', () => { if (overlay.classList.contains('open')) closeMenu(); else openMenu(); });
-  if (close) close.addEventListener('click', (e) => { e.preventDefault(); closeMenu(); });
+  // no separate close button: the burger button toggles the menu and transforms to X
   // close when clicking links inside the overlay (skip external/new-tab links)
   overlay.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', (e) => {
       const href = a.getAttribute('href') || '';
       const target = a.getAttribute('target');
       const isExternal = /^https?:\/\//i.test(href);
+      console.log('[menu] click on', { href, target, isExternal, id: a.id, text: a.textContent && a.textContent.trim() });
       if (isExternal || target === '_blank') return; // don't auto-close for external/new-tab links
+      // If debug mode is on, prevent navigation so console is preserved
       // allow normal navigation but close overlay first
       closeMenu();
+      // small delay to let the close animation start (does not block navigation)
+      setTimeout(() => console.log('[menu] after close, allowing navigation to', href), 120);
     });
   });
   // close on Escape
@@ -93,22 +102,22 @@
 })();
 
 // Header scrolled shadow
-(function(){
-  window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    if (!header) return;
-    if (window.scrollY > 50) header.classList.add('scrolled-header'); else header.classList.remove('scrolled-header');
-  });
-})();
+// (function(){
+//   window.addEventListener('scroll', () => {
+//     const header = document.querySelector('header');
+//     if (!header) return;
+//     if (window.scrollY > 50) header.classList.add('scrolled-header'); else header.classList.remove('scrolled-header');
+//   });
+// })();
 
 // Optional gentle parallax for elements with .scrolling-bg
-(function(){
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroBg = document.querySelector('.scrolling-bg');
-    if (heroBg) {
-      // keep transform small and safe
-      heroBg.style.transform = `translateY(${scrolled * 0.05}px) scale(1.03)`;
-    }
-  });
-})();
+// (function(){
+//   window.addEventListener('scroll', () => {
+//     const scrolled = window.pageYOffset;
+//     const heroBg = document.querySelector('.scrolling-bg');
+//     if (heroBg) {
+//       // keep transform small and safe
+//       heroBg.style.transform = `translateY(${scrolled * 0.05}px) scale(1.03)`;
+//     }
+//   });
+// })();

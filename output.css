@@ -1,0 +1,549 @@
+/* Fuentes personalizadas */
+
+@font-face {
+  font-family: 'Tan Giok';
+
+  src: url('fonts/Tan-Giok.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cy Grotesk Key';
+
+  src: url('fonts/Cy-Grotesk-Key.woff2') format('woff2');
+}
+
+/* ANIMACIONES */
+
+/* Entrada desde la izquierda para los nombres */
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Aparición suave (fade in) */
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Utility fade-in with configurable delays */
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.delay-2s {
+  animation-delay: 2s;
+}
+
+.delay-26s {
+  animation-delay: 2.6s;
+}
+
+h1 {
+  font-family: 'Tan Giok', serif;
+  font-size: 100px !important;
+  line-height: 1;
+  /* Aplicamos la animación: duración 1.5s, suave */
+  animation: slideInLeft 1.5s ease-out forwards;
+}
+
+.fecha-boda {
+  font-family: 'Cy Grotesk Key', sans-serif;
+  font-size: 18px !important;
+  letter-spacing: 0.2em;
+  opacity: 0;
+  /* Empieza invisible */
+  /* Animación: dura 1s, empieza tras 1.2s de espera */
+  animation: fadeIn 1s ease-out 1.2s forwards;
+}
+
+.contador-boda {
+  font-family: 'Cy Grotesk Key', sans-serif;
+  opacity: 0;
+  /* Empieza invisible */
+  /* Animación: aparece un poco después de la fecha (1.6s) */
+  animation: fadeIn 1s ease-out 1.6s forwards;
+}
+
+.texto-proximamente {
+  font-family: 'Cy Grotesk Key', sans-serif;
+  opacity: 0;
+  /* Empieza invisible */
+  /* Animación: es lo último en aparecer (2.5s de espera) */
+  animation: fadeIn 1.5s ease-out 2.5s forwards;
+}
+
+/* Ajuste para móviles: si el texto es muy grande, baja el tamaño automáticamente */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 60px !important;
+  }
+}
+
+/* Movimiento leve de la imagen de fondo hacia arriba */
+
+@keyframes panUp {
+  0% {
+    transform: scale(1.05) translateY(2%);
+  }
+
+  100% {
+    transform: scale(1.05) translateY(-2%);
+  }
+}
+
+.bg-animate {
+  /* Movimiento de abajo hacia arriba durante unos segundos */
+  animation: panUp 6s ease-out forwards;
+}
+
+/* Fondo hero */
+
+.hero-bg {
+  background-image: url('image.png');
+}
+
+/* RSVP area styles */
+
+.rsvp-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.rsvp-text {
+  color: #ffffff;
+  font-family: 'Cy Grotesk Key', sans-serif;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+/* Blinking arrow */
+
+.blink-arrow {
+  margin-top: 6px;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 28px;
+  line-height: 1;
+  /* smoother, slower blink */
+  animation: blink 1.6s ease-in-out infinite;
+  /* faux-3D effect */
+  transform-style: preserve-3d;
+  text-shadow: 0 6px 12px rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px) rotateX(18deg) scale(0.98);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg) scale(1);
+  }
+
+  70% {
+    opacity: 0.9;
+    transform: translateY(-2px) rotateX(6deg) scale(0.995);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-6px) rotateX(18deg) scale(0.98);
+  }
+}
+
+/* RSVP button */
+
+.rsvp-button {
+  background: linear-gradient(90deg, #6b5b3b 0%, #947c59 100%);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  box-shadow: 0 6px 18px rgba(104, 93, 74, 0.18);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.rsvp-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(104, 93, 74, 0.24);
+}
+
+.rsvp-button:active {
+  transform: translateY(-1px) scale(0.995);
+}
+
+/* "Más detalles" prompt */
+
+.more-details {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform 0.14s ease, background 0.14s ease;
+}
+
+.more-details:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.more-details .md-arrow {
+  display: inline-block;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.more-details:hover .md-arrow {
+  transform: translateY(4px);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Burger menu styles */
+
+.burger-btn {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  z-index: 100;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* burger lines (default black) */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.burger-btn {
+  z-index: 10001 !important;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 75vw;
+  max-width: 820px;
+  height: 100vh;
+  background: #f7eede;
+  /* solid beige */
+  transform: translateX(100%);
+  transition: transform 320ms cubic-bezier(.2, .9, .2, 1);
+  z-index: 10000 !important;
+  display: flex;
+  flex-direction: column;
+  padding: 48px 28px;
+  box-shadow: -12px 0 30px rgba(0, 0, 0, 0.12);
+}
+
+.menu-overlay.open {
+  transform: translateX(0);
+}
+
+/* Backdrop sits under the menu but above content; keep transparent to avoid darkening page */
+
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  z-index: 9998;
+}
+
+/* Ensure scrolling-bg doesn't create a higher stacking context */
+
+.scrolling-bg {
+  will-change: transform;
+  z-index: 0;
+}
+
+/* Disable body scroll when menu open */
+
+body.menu-open {
+  overflow: hidden;
+}
+
+.burger-lines {
+  width: 20px;
+  height: 2px;
+  background: #111;
+  position: relative;
+  transition: background 0.18s ease;
+}
+
+.burger-lines::before,
+.burger-lines::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background: #111;
+  transition: transform 0.28s cubic-bezier(.2, .9, .2, 1), top 0.28s cubic-bezier(.2, .9, .2, 1), opacity 0.18s ease;
+}
+
+.burger-lines::before {
+  top: -6px;
+}
+
+.burger-lines::after {
+  top: 6px;
+}
+
+/* When button has .open convert to X */
+
+.burger-btn.open .burger-lines {
+  background: transparent;
+}
+
+.burger-btn.open .burger-lines::before {
+  transform: translateY(6px) rotate(45deg);
+  top: 0;
+}
+
+.burger-btn.open .burger-lines::after {
+  transform: translateY(-6px) rotate(-45deg);
+  top: 0;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 75vw;
+  max-width: 820px;
+  height: 100vh;
+  background: linear-gradient(180deg, #f7eede, #f2e7d3);
+  /* similar to el_tinglao: larger panel */
+  box-shadow: -12px 0 30px rgba(0, 0, 0, 0.12);
+  transform: translateX(110%);
+  transition: transform 0.32s cubic-bezier(.2, .9, .2, 1);
+  z-index: 110;
+  padding: 48px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.menu-overlay.open {
+  transform: translateX(0);
+}
+
+.menu-overlay a {
+  color: #222;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: background 0.12s ease, transform 0.12s ease, color 0.12s ease;
+}
+
+.menu-overlay a:hover {
+  background: rgba(0, 0, 0, 0.04);
+  transform: translateX(6px);
+  color: #7a5642;
+}
+
+.menu-overlay a:focus {
+  outline: none;
+  background: rgba(122, 86, 66, 0.12);
+  /* subtle brown highlight */
+  color: #4b2f1f;
+  transform: translateX(6px);
+}
+
+.menu-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* Stitch css */
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.minimalist-line-input {
+  border: none;
+  border-bottom: 1px solid #cec5ba;
+  background: transparent;
+  padding: 8px 0;
+  width: 100%;
+}
+
+.minimalist-line-input:focus {
+  outline: none;
+  border-bottom: 1px solid #685d4a;
+  ring: 0;
+}
+
+/* El santuario */
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.scrolled-header {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+.line-detail {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #7d766c33, transparent);
+}
+
+.scrolling-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  /* match the final state previously applied by JS: slightly scaled and positioned */
+  transform: translateY(0) scale(1.05);
+  will-change: transform;
+}
+
+/* El tinglao */
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  line-height: 1;
+}
+
+.editorial-shadow {
+  box-shadow: 0 4px 30px rgba(104, 93, 74, 0.05);
+}
+
+.scrolling-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  /* match the final state previously applied by JS: slightly scaled and positioned */
+  transform: translateY(0) scale(1.05);
+  will-change: transform;
+}
+
+/* Pulse (heartbeat) animation every 2s */
+
+@keyframes pulseBeat {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.06);
+  }
+
+  40% {
+    transform: scale(0.98);
+  }
+
+  60% {
+    transform: scale(1.03);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+#downloadApp {
+  display: inline-block;
+  transform-origin: center;
+  animation: pulseBeat 2s ease-in-out infinite;
+}
+
+/* Backdrop behind menu when open */
+
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  /* keep transparent like el_tinglao */
+  z-index: 105;
+}
+
+/* Close X button inside menu */
+
+.close-btn {
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  color: #222;
+  font-size: 20px;
+  line-height: 1;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: transform 0.16s ease, color 0.12s ease, background 0.12s ease;
+}
+
+.close-btn:hover {
+  background: rgba(0, 0, 0, 0.04);
+  transform: scale(1.02);
+}
+
+/* Make burger->X and menu open/close feel slightly staggered */
+
+.menu-overlay,
+.burger-lines,
+.burger-btn {
+  will-change: transform, opacity;
+}
+
+/* Disable body scroll when menu open (like el_tinglao) */
+
+body.menu-open {
+  overflow: hidden;
+}

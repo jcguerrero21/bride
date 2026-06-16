@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Santuario de Nuestra Señora de la Salud | Elena &amp; Julián</title>
+    <link rel="stylesheet" href="./output.css">
+
     <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap"
@@ -19,25 +21,6 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Page-specific full-screen overlay menu for el_santuario.html */
-        header { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; }
-        .burger-btn { z-index: 10001 !important; }
-        /* Make menu overlay cover entire viewport and slide from top */
-        .menu-overlay {
-            position: fixed; inset: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(180deg, #f7eede, #f2e7d3);
-            transform: translateY(-8%);
-            transition: transform 320ms cubic-bezier(.2,.9,.2,1), opacity 200ms;
-            z-index: 2147483646; display:flex; flex-direction:column; padding:48px 28px; opacity:0;
-        }
-        .menu-overlay.open { transform: translateY(0); opacity:1; }
-        /* Transparent backdrop (no darkening) */
-        .menu-backdrop { position: fixed; inset:0; background: transparent; z-index: 2147483645; }
-        body.menu-open { overflow: hidden; }
-        .scrolling-bg { will-change: transform; z-index:0; }
-    </style>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -127,29 +110,28 @@
             },
         }
     </script>
+
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body
     class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
     <!-- TopAppBar -->
-    <header
-        class="fixed top-0 w-full z-50 backdrop-blur-md bg-background/80 border-b border-outline/10 flex justify-between items-center px-margin-mobile h-16">
+    <header>
         <!-- Burger menu button -->
-        <button id="burgerBtn" class="burger-btn" aria-label="Abrir menú">
+        <button id="burgerBtn" class="burger-btn backdrop-blur-md" aria-label="Abrir menú">
             <span class="burger-lines" aria-hidden="true"></span>
         </button>
 
         <!-- Menu overlay -->
-        <nav id="menuOverlay" class="menu-overlay" aria-hidden="true"
-            style="background: linear-gradient(180deg, #f7eede, #f2e7d3);">
+        <nav id="menuOverlay" class="menu-overlay" aria-hidden="true">
             <div class="menu-title">Menu</div>
             <a href="./index.html" class="menu-link">Página Principal</a>
             <a href="./el_tinglao.html" class="menu-link">La finca</a>
             <div style="flex:1"></div>
-            <a href="javascript:void(0)" id="closeMenu" style="align-self:flex-start;"></a>
         </nav>
     </header>
-    <main class="pt-16 pb-24">
+    <main class="pb-24">
         <!-- Hero Section -->
 
         <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
@@ -265,58 +247,6 @@
     <!-- BottomNavBar -->
 
     <script src="scripts.js" defer></script>
-
-    <script>
-        // Local menu logic: full-screen overlay for this page
-        (function(){
-            const btn = document.getElementById('burgerBtn');
-            const overlay = document.getElementById('menuOverlay');
-            const close = document.getElementById('closeMenu');
-            if (!btn || !overlay) return;
-            let backdrop = null;
-            function createBackdrop(){
-                if (backdrop) return backdrop;
-                backdrop = document.createElement('div');
-                backdrop.className = 'menu-backdrop';
-                backdrop.addEventListener('click', closeMenu);
-                return backdrop;
-            }
-            function openMenu(){
-                document.body.appendChild(createBackdrop());
-                overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); btn.classList.add('open');
-                document.body.classList.add('menu-open');
-            }
-            function closeMenu(){
-                overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); btn.classList.remove('open');
-                document.body.classList.remove('menu-open');
-                if (backdrop && backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
-            }
-            btn.addEventListener('click', ()=>{ if (overlay.classList.contains('open')) closeMenu(); else openMenu(); });
-            if (close) close.addEventListener('click',(e)=>{ e.preventDefault(); closeMenu(); });
-            overlay.querySelectorAll('a').forEach(a=>{
-                if (a.id === 'closeMenu') return; // skip the close control
-                a.addEventListener('click', (e)=>{
-                    const href = a.getAttribute('href')||''; const target = a.getAttribute('target');
-                    const isExternal = /^https?:\/\//i.test(href);
-                    // let truly external links or those opening in new tab behave normally
-                    if (isExternal || target === '_blank') return;
-                    e.preventDefault();
-                    closeMenu();
-                    // navigate after menu closes so transition is visible and avoid unexpected redirects
-                    setTimeout(()=>{
-                        if (href.startsWith('#')){
-                            const el = document.querySelector(href);
-                            if (el) el.scrollIntoView({behavior:'smooth'});
-                            else window.location.hash = href;
-                        } else {
-                            window.location.href = href;
-                        }
-                    }, 160);
-                });
-            });
-            document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeMenu(); });
-        })();
-    </script>
 
 
 </body>
