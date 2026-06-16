@@ -1,0 +1,119 @@
+/* Fuentes personalizadas */
+@font-face {
+    font-family: 'Tan Giok';
+    src: url('fonts/Tan-Giok.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Cy Grotesk Key';
+    src: url('fonts/Cy-Grotesk-Key.woff2') format('woff2');
+}
+
+/* ANIMACIONES */
+
+/* Entrada desde la izquierda para los nombres */
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Aparición suave (fade in) */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    font-family: 'Tan Giok', serif;
+    font-size: 100px !important;
+    line-height: 1;
+    /* Aplicamos la animación: duración 1.5s, suave */
+    animation: slideInLeft 1.5s ease-out forwards;
+}
+
+.fecha-boda {
+    font-family: 'Cy Grotesk Key', sans-serif;
+    font-size: 18px !important;
+    letter-spacing: 0.2em;
+    opacity: 0;
+    /* Empieza invisible */
+    /* Animación: dura 1s, empieza tras 1.2s de espera */
+    animation: fadeIn 1s ease-out 1.2s forwards;
+}
+
+.contador-boda {
+    font-family: 'Cy Grotesk Key', sans-serif;
+    opacity: 0;
+    /* Empieza invisible */
+    /* Animación: aparece un poco después de la fecha (1.6s) */
+    animation: fadeIn 1s ease-out 1.6s forwards;
+}
+
+.texto-proximamente {
+    font-family: 'Cy Grotesk Key', sans-serif;
+    opacity: 0;
+    /* Empieza invisible */
+    /* Animación: es lo último en aparecer (2.5s de espera) */
+    animation: fadeIn 1.5s ease-out 2.5s forwards;
+}
+
+/* Ajuste para móviles: si el texto es muy grande, baja el tamaño automáticamente */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 60px !important;
+    }
+}
+
+/* Movimiento leve de la imagen de fondo hacia arriba */
+@keyframes panUp {
+    0% {
+        transform: scale(1.05) translateY(2%);
+    }
+
+    100% {
+        transform: scale(1.05) translateY(-2%);
+    }
+}
+
+.bg-animate {
+    /* Movimiento de abajo hacia arriba durante unos segundos */
+    animation: panUp 6s ease-out forwards;
+}
+
+/* Fondo hero */
+.hero-bg {
+    background-image: url('image.png');
+}
+
+/* Stitch css */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.minimalist-line-input {
+    border: none;
+    border-bottom: 1px solid #cec5ba;
+    background: transparent;
+    padding: 8px 0;
+    width: 100%;
+}
+
+.minimalist-line-input:focus {
+    outline: none;
+    border-bottom: 1px solid #685d4a;
+    ring: 0;
+}

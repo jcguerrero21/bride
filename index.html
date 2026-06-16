@@ -1,104 +1,123 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boda de Laura & Raul</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Fuentes personalizadas */
-        @font-face {
-            font-family: 'Tan Giok';
-            src: url('fonts/Tan-Giok.woff2') format('woff2');
-        }
+    <link rel="stylesheet" href="styles.css">
 
-        @font-face {
-            font-family: 'Cy Grotesk Key';
-            src: url('fonts/Cy-Grotesk-Key.woff2') format('woff2');
-        }
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
 
-        /* ANIMACIONES */
-        
-        /* Entrada desde la izquierda para los nombres */
-        @keyframes slideInLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(-50px);
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#d0e9d4",
+                        "on-tertiary-fixed-variant": "#364c3c",
+                        "on-tertiary-container": "#576e5c",
+                        "tertiary-container": "#d6efda",
+                        "secondary": "#7a5642",
+                        "surface-variant": "#e3e2e0",
+                        "surface-bright": "#faf9f6",
+                        "inverse-surface": "#2f312f",
+                        "surface": "#faf9f6",
+                        "background": "#faf9f6",
+                        "on-surface-variant": "#4b463d",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#1a1c1a",
+                        "secondary-fixed-dim": "#ecbda4",
+                        "primary": "#685d4a",
+                        "inverse-primary": "#d3c5ad",
+                        "on-primary-fixed": "#221b0b",
+                        "outline-variant": "#cec5ba",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#2e1506",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#0b2013",
+                        "primary-container": "#f7e7ce",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dbdad7",
+                        "primary-fixed": "#f0e0c8",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e9e8e5",
+                        "inverse-on-surface": "#f2f1ee",
+                        "on-primary-fixed-variant": "#4f4533",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f4f3f1",
+                        "surface-tint": "#685d4a",
+                        "outline": "#7d766c",
+                        "on-primary-container": "#726753",
+                        "on-secondary-fixed-variant": "#603f2d",
+                        "on-secondary-container": "#795541",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e3e2e0",
+                        "primary-fixed-dim": "#d3c5ad",
+                        "secondary-container": "#fecdb4",
+                        "on-surface": "#1a1c1a",
+                        "tertiary-fixed-dim": "#b4cdb8",
+                        "tertiary": "#4d6453",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#efeeeb",
+                        "secondary-fixed": "#ffdbca"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "container-max": "1140px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Playfair Display"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
             }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
         }
-
-        /* Aparición suave (fade in) */
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(10px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        h1 {
-            font-family: 'Tan Giok', serif;
-            font-size: 100px !important;
-            line-height: 1;
-            /* Aplicamos la animación: duración 1.5s, suave */
-            animation: slideInLeft 1.5s ease-out forwards;
-        }
-
-        .fecha-boda {
-            font-family: 'Cy Grotesk Key', sans-serif;
-            font-size: 18px !important;
-            letter-spacing: 0.2em;
-            opacity: 0; /* Empieza invisible */
-            /* Animación: dura 1s, empieza tras 1.2s de espera */
-            animation: fadeIn 1s ease-out 1.2s forwards;
-        }
-
-        .contador-boda {
-            font-family: 'Cy Grotesk Key', sans-serif;
-            opacity: 0; /* Empieza invisible */
-            /* Animación: aparece un poco después de la fecha (1.6s) */
-            animation: fadeIn 1s ease-out 1.6s forwards;
-        }
-
-        .texto-proximamente {
-            font-family: 'Cy Grotesk Key', sans-serif;
-            opacity: 0; /* Empieza invisible */
-            /* Animación: es lo último en aparecer (2.5s de espera) */
-            animation: fadeIn 1.5s ease-out 2.5s forwards;
-        }
-
-        /* Ajuste para móviles: si el texto es muy grande, baja el tamaño automáticamente */
-        @media (max-width: 768px) {
-            h1 { font-size: 60px !important; }
-        }
-
-        /* Movimiento leve de la imagen de fondo hacia arriba */
-        @keyframes panUp {
-            0% {
-                transform: scale(1.05) translateY(2%);
-            }
-            100% {
-                transform: scale(1.05) translateY(-2%);
-            }
-        }
-
-        .bg-animate {
-            /* Movimiento de abajo hacia arriba durante unos segundos */
-            animation: panUp 6s ease-out forwards;
-        }
-    </style>
+    </script>
 </head>
-<body class="bg-white overflow-hidden">
+
+<body
+    class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container">
 
     <header class="relative h-screen flex items-center justify-center overflow-hidden">
-        
-        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-animate" style="background-image: url('image.png');"></div>
+
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-animate hero-bg"></div>
 
         <div class="absolute inset-0 bg-black opacity-20 z-0"></div>
 
         <div class="relative z-10 text-center px-4 w-full">
-            
+
             <h1 class="text-white tracking-tight">
                 LAURA & RAUL
             </h1>
@@ -136,7 +155,334 @@
                 <span class="block w-8 h-[1px] bg-white opacity-40 mt-4"></span>
             </div>
         </div>
+
     </header>
+
+    <main class="py-12 space-y-20">
+        <!-- General Group -->
+        <section
+            class="px-margin-mobile py-12 transition-all duration-700 opacity-100 translate-y-0 bg-primary-container/30 rounded-xl mx-margin-mobile space-y-12"
+            id="general-info-group">
+            <div class="text-center mb-8">
+                <h2 class="font-display-lg-mobile text-display-lg-mobile text-primary mb-2">General</h2>
+                <div class="h-[1px] w-12 bg-primary mx-auto"></div>
+            </div>
+            <div class="space-y-12" id="general-info-content">
+                <div class="space-y-8">
+                    <div class="flex items-center gap-4 mb-4"><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                        <h2 class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase">Alojamiento
+                        </h2><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                    </div>
+                    <div class="bg-surface-container-lowest border border-outline-variant/20 p-6 rounded-lg">
+                        <h3 class="font-headline-sm text-headline-sm text-secondary mb-6">Hotel Urpi</h3><a
+                            class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group"
+                            href="#">VER UBICACIÓN<span
+                                class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform"
+                                data-icon="north_east">north_east</span></a>
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-4 mb-4"><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                        <h2 class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase">APARCAMIENTO
+                        </h2><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                    </div>
+                    <div class="bg-surface-container-lowest border border-outline-variant/20 p-6 rounded-lg">
+                        <div class="space-y-6">
+                            <div class="flex flex-col gap-2">
+                                <p class="font-body-md text-on-surface-variant">· Parking público Gratuito</p><a
+                                    class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group w-fit"
+                                    href="#">VER UBICACIÓN<span
+                                        class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform"
+                                        data-icon="north_east">north_east</span></a>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <p class="font-body-md text-on-surface-variant">· Parking privado 'Hotel Urpi'</p>
+                                <p class="font-body-md text-on-surface-variant opacity-70 text-[14px] mt-[-4px]">Precio
+                                    15€/dia. Reserva previa llamando a Hotel Urpi.</p><a
+                                    class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group w-fit"
+                                    href="#">VER UBICACIÓN<span
+                                        class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform"
+                                        data-icon="north_east">north_east</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-4 mb-4"><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                        <h2 class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase">PELUQUERIAS
+                        </h2><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                    </div>
+                    <div class="grid grid-cols-1 gap-6">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-end">
+                                <h3 class="font-headline-sm text-lg text-secondary">Nilo Hair Salon</h3>
+                            </div><button
+                                class="w-full bg-primary text-on-primary py-2 text-[10px] font-label-caps tracking-widest active:scale-[0.98] transition-transform uppercase">SOLICITAR
+                                INFO</button>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-end">
+                                <h3 class="font-headline-sm text-lg text-secondary">Mireia Moreno Hair Studio</h3>
+                            </div><button
+                                class="w-full bg-primary text-on-primary py-2 text-[10px] font-label-caps tracking-widest active:scale-[0.98] transition-transform uppercase">SOLICITAR
+                                INFO</button>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-end">
+                                <h3 class="font-headline-sm text-lg text-secondary">Salón Tribeca</h3>
+                            </div><button
+                                class="w-full bg-primary text-on-primary py-2 text-[10px] font-label-caps tracking-widest active:scale-[0.98] transition-transform uppercase">SOLICITAR
+                                INFO</button>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-end">
+                                <h3 class="font-headline-sm text-lg text-secondary">La Saloneria Sabadell Zamenhof</h3>
+                            </div><button
+                                class="w-full bg-primary text-on-primary py-2 text-[10px] font-label-caps tracking-widest active:scale-[0.98] transition-transform uppercase">SOLICITAR
+                                INFO</button>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-end">
+                                <h3 class="font-headline-sm text-lg text-secondary">Sesiom Estética</h3>
+                            </div><button
+                                class="w-full bg-primary text-on-primary py-2 text-[10px] font-label-caps tracking-widest active:scale-[0.98] transition-transform uppercase">SOLICITAR
+                                INFO</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-4 mb-4"><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                        <h2 class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase">FARMACIAS
+                        </h2><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                    </div>
+                    <div class="grid grid-cols-1 gap-6">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-end">
+                                <h3 class="font-headline-sm text-lg text-secondary">Farmacia Tallaret</h3>
+                            </div><a
+                                class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group w-fit mt-2"
+                                href="#">VER UBICACIÓN<span
+                                    class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform"
+                                    data-icon="north_east">north_east</span></a>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-end">
+                                <h3 class="font-headline-sm text-lg text-secondary">Farmacia Garell Soler</h3>
+                            </div><a
+                                class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group w-fit mt-2"
+                                href="#">VER UBICACIÓN<span
+                                    class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform"
+                                    data-icon="north_east">north_east</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-4 mb-4"><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                        <h2 class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase">CORTE INGLES
+                        </h2><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                    </div>
+                    <div class="grid grid-cols-1 gap-6">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-end">
+                                <h3 class="font-headline-sm text-lg text-secondary">El Corte Inglés</h3>
+                            </div>
+                            <p class="font-body-md text-on-surface-variant opacity-70 text-[14px] mt-2">Para los que
+                                tengáis un contratiempo u os hayáis olvidado algo, tenéis uno a 10min del Hotel Urpi.
+                            </p><a
+                                class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group w-fit mt-2"
+                                href="#">VER UBICACIÓN<span
+                                    class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform"
+                                    data-icon="north_east">north_east</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Corte Ingles Spare Section -->
+
+        <!-- PreBoda -->
+        <section
+            class="px-margin-mobile py-12 transition-all duration-700 opacity-100 translate-y-0 bg-primary-container/30 rounded-xl mx-margin-mobile">
+            <div class="text-center mb-8">
+                <h2 class="font-display-lg-mobile text-display-lg-mobile text-primary mb-2">PreBoda</h2>
+                <div class="h-[1px] w-12 bg-primary mx-auto"></div>
+            </div>
+            <div class="space-y-8 text-center">
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="flex flex-col items-center">
+                        <span
+                            class="font-label-caps text-[10px] text-primary tracking-widest uppercase mb-1">Horario</span>
+                        <span class="font-headline-sm text-secondary">20:00h a 00:00h</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="font-label-caps text-[10px] text-primary tracking-widest uppercase mb-1">Dress
+                            Code</span>
+                        <span class="font-body-md text-on-surface">Cocktail Casual</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span
+                            class="font-label-caps text-[10px] text-primary tracking-widest uppercase mb-1">Ubicación</span>
+                        <p class="font-body-md text-on-surface-variant mb-2">Salon Hotel Urpi</p>
+                        <p class="font-body-md text-on-surface-variant opacity-70 text-[12px] mt-[-4px]">Si téneis
+                            dudas, podéis preguntar en recepción, ellos os guiarán.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Día de la Boda -->
+        <section
+            class="px-margin-mobile py-12 transition-all duration-700 opacity-100 translate-y-0 bg-primary-container/30 rounded-xl mx-margin-mobile space-y-12">
+            <div class="text-center mb-8">
+                <h2 class="font-display-lg-mobile text-display-lg-mobile text-primary mb-2">Día de la Boda</h2>
+                <div class="h-[1px] w-12 bg-primary mx-auto"></div>
+            </div>
+            <div class="space-y-12">
+                <div class="space-y-8">
+                    <div class="flex items-center gap-4 mb-4"><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                        <h2 class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase">Transporte
+                        </h2><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                    </div>
+                    <div class="space-y-6 px-4">
+                        <p class="font-body-md text-on-surface-variant">Como ya sabéis, para este día, dispondréis de
+                            servicio de autocares, tanto para la Ida, como para la vuelta.</p>
+                        <p class="font-label-caps text-primary tracking-widest uppercase">Los horarios son los
+                            siguientes:</p>
+                        <div class="space-y-6">
+                            <div class="flex flex-col gap-2"><span
+                                    class="font-headline-sm text-secondary text-lg">Salida Autocar 11:15h</span>
+                                <p class="font-body-md text-on-surface-variant text-[14px]">El autocar saldrá desde
+                                    RONDA ZAMENHOF - P. BUS DONES DEL TÈXTIL</p><a
+                                    class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group w-fit mt-2"
+                                    href="#">VER UBICACIÓN<span
+                                        class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">north_east</span></a>
+                                <p class="font-body-md text-on-surface-variant opacity-70 text-[14px] italic mt-2">Por
+                                    favor, se ruega puntualidad.</p>
+                            </div>
+                            <div class="flex flex-col gap-2"><span
+                                    class="font-headline-sm text-secondary text-lg">Vuelta Autocar 23:00h</span>
+                                <p class="font-body-md text-on-surface-variant text-[14px]">El autocar saldrá del Mas de
+                                    Can Riera y hará parada en el mismo punto de la salida.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-4 mb-4"><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                        <h2 class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase">Ceremonia
+                        </h2><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                    </div>
+                    <div class="px-4 space-y-4">
+                        <p class="font-body-md text-on-surface-variant">Celebración de la ceremonia en el Santuario de
+                            Nuestra Señora de la Salud</p>
+                        <div class="flex flex-col gap-1">
+                            <span class="font-label-caps text-[10px] text-primary tracking-widest uppercase">Hora de la
+                                Celebración</span>
+                            <span class="font-headline-sm text-[#000000]">12:00<span
+                                    class="text-[0.85em]">h</span></span>
+                        </div>
+                        <a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group w-fit mt-2"
+                            href="#">VER UBICACIÓN<span
+                                class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform"
+                                data-icon="north_east">north_east</span></a>
+                        <p class="font-body-md text-on-surface-variant opacity-70 text-[14px] mt-4">Nota: El
+                            emplazamiento está dotado de un parking publico gratuito para todos aquellos que no utilicen
+                            el servicio de autocar.</p>
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <div class="flex items-center gap-4 mb-4"><span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                        <h2 class="font-label-caps text-label-caps text-primary tracking-[0.2em] uppercase">Finca</h2>
+                        <span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                    </div>
+                    <div class="px-4 space-y-4">
+                        <p class="font-body-md text-on-surface-variant">La celebración del convite se realizará en el
+                            Mas de Can Riera.</p>
+                        <div class="flex flex-col gap-1"><span
+                                class="font-label-caps text-[10px] text-primary tracking-widest uppercase">Hora del
+                                convite</span><span class="font-headline-sm text-[#000000]">14:00<span
+                                    class="text-[0.85em]">h</span></span></div><a
+                            class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group w-fit mt-2"
+                            href="#">VER UBICACIÓN<span
+                                class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform"
+                                data-icon="north_east">north_east</span></a>
+                        <p class="font-body-md text-on-surface-variant opacity-70 text-[14px] mt-4">Nota: La finca
+                            dispone de un parking privado gratuito para todos aquellos invitados que no utilicen el
+                            servicio de autocar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section
+            class="px-margin-mobile py-12 transition-all duration-700 opacity-100 translate-y-0 bg-primary-container/30 rounded-xl mx-margin-mobile space-y-12">
+            <div class="text-center mb-8">
+                <h2 class="font-display-lg-mobile text-display-lg-mobile text-primary mb-2 uppercase">¡OS NECESITAMOS!
+                </h2>
+                <div class="h-[1px] w-12 bg-primary mx-auto"></div>
+            </div>
+            <div class="space-y-8">
+                <p class="font-body-md text-on-surface-variant text-center px-4">
+                    Como el título indica, os necesitamos durante este fin de semana para que nos ayudeis a poder captar
+                    todos aquellos momentos emblemáticos y maravillosos que surjan. De esta manera, os pedimos que
+                    sigais los siguientes pasos:
+                </p>
+                <div class="grid grid-cols-1 gap-8 pt-4">
+                    <div class="flex flex-col items-center text-center space-y-4">
+                        <div class="space-y-1">
+                            <h3 class="font-label-caps text-primary tracking-widest uppercase">1.- Descargar aplicación
+                            </h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-on-primary">
+                            <span class="material-symbols-outlined text-headline-sm">download</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center text-center space-y-4">
+                        <div class="space-y-1">
+                            <h3 class="font-label-caps text-primary tracking-widest uppercase">2.- Introduce el código
+                            </h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-on-primary">
+                            <span class="material-symbols-outlined text-headline-sm">key</span>
+                        </div>
+                        <p
+                            class="font-body-md text-on-surface-variant opacity-70 text-[12px] mt-4 max-w-[280px] mx-auto">
+                            Nota: El código de acceso se proporcionará el dia de la PreBoda.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center space-y-4">
+                        <div class="space-y-1">
+                            <h3 class="font-label-caps text-primary tracking-widest uppercase">3.- Empieza a disfrutar
+                            </h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-on-primary">
+                            <span class="material-symbols-outlined text-headline-sm">celebration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scrips JS -->
+    <script>
+        // Simple scroll animation for reveal effects
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
 
     <script>
         const fechaBoda = new Date("2026-09-26T00:00:00").getTime();
@@ -167,4 +513,5 @@
         actualizarContador();
     </script>
 </body>
+
 </html>
