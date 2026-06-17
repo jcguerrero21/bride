@@ -107,6 +107,16 @@
             }
         }
     </script>
+    <!-- Preload hero background to avoid gradual load on first visit -->
+    <link rel="preload" href="image.jpg" as="image">
+    <script>
+        (function(){
+            try {
+                var img = new Image();
+                img.src = 'image.jpg';
+            } catch (e) { }
+        })();
+    </script>
 </head>
 
 <body
@@ -119,8 +129,6 @@
                 <div class="heart-left"></div>
                 <div class="heart-right"></div>
             </div>
-            <h2 class="wedding-loader__title">Laura & Raul</h2>
-            <p class="wedding-loader__subtitle">Nos estamos preparando para un día inolvidable…</p>
         </div>
     </div>
     <header class="relative h-screen flex items-center justify-center overflow-hidden">
@@ -136,7 +144,7 @@
             <a href="el_tinglao.html" class="menu-link">La Finca</a>
             <a href="el_santuario.html" class="menu-link">El Santuario</a>
             <a href="#ayudanos" class="menu-link">Ayúdanos</a>
-            <div style="flex:0.9"></div>
+            <div style="flex:0.7"></div>
             <a class="rsvp-button text-center"
                 href="https://docs.google.com/forms/d/e/1FAIpQLSeZTTmGRO34Bv7KVdvUvc6ruxV9Gdx783hJRUxXhj8PGx8yFQ/viewform"
                 target="_blank" rel="noopener noreferrer">Formulario de asistencia</a>
@@ -531,42 +539,22 @@
                     loader.style.display = 'none';
                     return;
                 }
-                // show for ~3 seconds, then hide and set flag
-                loader.style.display = 'flex';
+                    // show loader immediately
+                    loader.style.display = 'flex';
 
-                // play two soft heartbeat sounds to match the animation
-                try {
-                    (function playHeartBeats() {
-                        var AudioCtx = window.AudioContext || window.webkitAudioContext;
-                        if (!AudioCtx) return;
-                        var ctx = new AudioCtx();
-                        function beat(time, duration, freq, gainVal) {
-                            var o = ctx.createOscillator();
-                            var g = ctx.createGain();
-                            o.type = 'sine';
-                            o.frequency.value = freq;
-                            g.gain.value = 0;
-                            o.connect(g);
-                            g.connect(ctx.destination);
-                            o.start(time);
-                            g.gain.linearRampToValueAtTime(gainVal, time + 0.001);
-                            g.gain.exponentialRampToValueAtTime(0.001, time + duration);
-                            o.stop(time + duration + 0.02);
-                        }
-                        var now = ctx.currentTime;
-                        beat(now, 0.18, 120, 0.06);
-                        beat(now + 0.45, 0.16, 140, 0.05);
-                        // close context after a short delay
-                        setTimeout(function () { try { ctx.close(); } catch (e) { } }, 1200);
-                    })();
-                } catch (e) { }
+                    // Wait for both: minimum 3000ms AND the window 'load' event (resources loaded)
+                    var minDelay = new Promise(function (res) { setTimeout(res, 3000); });
+                    var pageLoaded = new Promise(function (res) {
+                        if (document.readyState === 'complete') return res();
+                        window.addEventListener('load', function onload() { window.removeEventListener('load', onload); res(); });
+                    });
 
-                setTimeout(function () {
-                    loader.style.transition = 'opacity 400ms ease';
-                    loader.style.opacity = '0';
-                    setTimeout(function () { loader.remove(); }, 450);
-                    try { localStorage.setItem(firstVisitKey, '1'); } catch (e) { }
-                }, 3000);
+                    Promise.all([minDelay, pageLoaded]).then(function () {
+                        loader.style.transition = 'opacity 400ms ease';
+                        loader.style.opacity = '0';
+                        setTimeout(function () { loader.remove(); }, 450);
+                        try { localStorage.setItem(firstVisitKey, '1'); } catch (e) { }
+                    });
             })();
     </script>
     <script>

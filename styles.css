@@ -329,8 +329,15 @@ h1 {
 }
 
 .hero-form-content-up {
-    transform: translateY(-12vh);
+    transform: translateY(-18vh);
 }
+
+/* Lift the 'Más detalles' prompt a bit for better spacing */
+.more-details {
+    transform: translateY(-8vh) !important;
+    transition: transform 0.18s ease;
+}
+.more-details:hover { transform: translateY(-9vh) !important; }
 
 html {
     scroll-behavior: smooth;
