@@ -106,7 +106,7 @@
       // allow normal navigation but close overlay first
       closeMenu();
       // small delay to let the close animation start (does not block navigation)
-      setTimeout(() => console.log('[menu] after close, allowing navigation to', href), 120);
+    //   setTimeout(() => console.log('[menu] after close, allowing navigation to', href), 120);
     });
   });
   // close on Escape
