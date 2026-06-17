@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="./output.css">
     <link rel="stylesheet" href="styles.css">
 
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap"
@@ -110,6 +112,17 @@
 <body
     class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container">
 
+    <!-- Wedding loader (first visit only) -->
+    <div id="wedding-loader" class="wedding-loader" aria-hidden="true">
+        <div class="wedding-loader__content">
+            <div class="wedding-loader__heart" aria-hidden="true">
+                <div class="heart-left"></div>
+                <div class="heart-right"></div>
+            </div>
+            <h2 class="wedding-loader__title">Laura & Raul</h2>
+            <p class="wedding-loader__subtitle">Nos estamos preparando para un día inolvidable…</p>
+        </div>
+    </div>
     <header class="relative h-screen flex items-center justify-center overflow-hidden">
 
         <!-- Burger menu button -->
@@ -123,17 +136,17 @@
             <a href="el_tinglao.html" class="menu-link">La Finca</a>
             <a href="el_santuario.html" class="menu-link">El Santuario</a>
             <a href="#ayudanos" class="menu-link">Ayúdanos</a>
-            <div style="flex:1"></div>
+            <div style="flex:0.9"></div>
             <a class="rsvp-button text-center"
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSeZTTmGRO34Bv7KVdvUvc6ruxV9Gdx783hJRUxXhj8PGx8yFQ/viewform"
-                    target="_blank" rel="noopener noreferrer">Formulario de asistencia</a>
+                href="https://docs.google.com/forms/d/e/1FAIpQLSeZTTmGRO34Bv7KVdvUvc6ruxV9Gdx783hJRUxXhj8PGx8yFQ/viewform"
+                target="_blank" rel="noopener noreferrer">Formulario de asistencia</a>
         </nav>
 
         <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-animate hero-bg"></div>
 
         <div class="absolute inset-0 bg-black opacity-20 z-0"></div>
 
-        <div class="relative z-10 text-center px-4 w-full">
+        <div class="relative z-10 text-center px-4 w-full hero-content-up">
 
             <h1 class="text-white tracking-tight">
                 LAURA & RAUL
@@ -164,7 +177,7 @@
 
         </div>
 
-        <div class="absolute bottom-10 left-0 w-full text-center z-10 px-4 mb-4">
+        <div class="absolute bottom-10 left-0 w-full text-center z-10 px-4 mb-3 hero-form-content-up">
             <div class="rsvp-area fade-in delay-2s">
                 <div class="blink-arrow" aria-hidden="true">&#8595;</div>
                 <a class="rsvp-button"
@@ -509,21 +522,70 @@
     <script src="scripts.js" defer></script>
     <script>
             (function () {
-                var a = document.getElementById('downloadApp');
-                if (!a) return;
-                var ua = navigator.userAgent || navigator.vendor || window.opera;
-                var android = /android/i.test(ua);
-                var ios = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
-                if (android) {
-                    a.href = 'https://play.google.com/store/apps/details?id=net.bodas.android.wedshoots&hl=es&pli=1';
-                } else if (ios) {
-                    a.href = 'https://apps.apple.com/es/app/wedshoots/id660256196';
-                } else {
-                    a.href = 'https://play.google.com/store/apps/details?id=net.bodas.android.wedshoots&hl=es&pli=1';
+                var loader = document.getElementById('wedding-loader');
+                if (!loader) return;
+                var firstVisitKey = 'wedding_first_visit_v1';
+                var isFirst = !localStorage.getItem(firstVisitKey);
+                if (!isFirst) {
+                    // not first visit: hide immediately
+                    loader.style.display = 'none';
+                    return;
                 }
-                a.setAttribute('target', '_blank');
-                a.setAttribute('rel', 'noopener noreferrer');
+                // show for ~3 seconds, then hide and set flag
+                loader.style.display = 'flex';
+
+                // play two soft heartbeat sounds to match the animation
+                try {
+                    (function playHeartBeats() {
+                        var AudioCtx = window.AudioContext || window.webkitAudioContext;
+                        if (!AudioCtx) return;
+                        var ctx = new AudioCtx();
+                        function beat(time, duration, freq, gainVal) {
+                            var o = ctx.createOscillator();
+                            var g = ctx.createGain();
+                            o.type = 'sine';
+                            o.frequency.value = freq;
+                            g.gain.value = 0;
+                            o.connect(g);
+                            g.connect(ctx.destination);
+                            o.start(time);
+                            g.gain.linearRampToValueAtTime(gainVal, time + 0.001);
+                            g.gain.exponentialRampToValueAtTime(0.001, time + duration);
+                            o.stop(time + duration + 0.02);
+                        }
+                        var now = ctx.currentTime;
+                        beat(now, 0.18, 120, 0.06);
+                        beat(now + 0.45, 0.16, 140, 0.05);
+                        // close context after a short delay
+                        setTimeout(function () { try { ctx.close(); } catch (e) { } }, 1200);
+                    })();
+                } catch (e) { }
+
+                setTimeout(function () {
+                    loader.style.transition = 'opacity 400ms ease';
+                    loader.style.opacity = '0';
+                    setTimeout(function () { loader.remove(); }, 450);
+                    try { localStorage.setItem(firstVisitKey, '1'); } catch (e) { }
+                }, 3000);
             })();
+    </script>
+    <script>
+        (function () {
+            var a = document.getElementById('downloadApp');
+            if (!a) return;
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            var android = /android/i.test(ua);
+            var ios = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+            if (android) {
+                a.href = 'https://play.google.com/store/apps/details?id=net.bodas.android.wedshoots&hl=es&pli=1';
+            } else if (ios) {
+                a.href = 'https://apps.apple.com/es/app/wedshoots/id660256196';
+            } else {
+                a.href = 'https://play.google.com/store/apps/details?id=net.bodas.android.wedshoots&hl=es&pli=1';
+            }
+            a.setAttribute('target', '_blank');
+            a.setAttribute('rel', 'noopener noreferrer');
+        })();
     </script>
 </body>
 

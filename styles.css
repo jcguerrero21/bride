@@ -119,6 +119,10 @@ h1 {
     flex-direction: column;
     align-items: center;
     gap: 12px;
+    transform: translateY(-20px);
+}
+@media (min-width: 768px) {
+    .rsvp-area { transform: translateY(-36px); }
 }
 
 .rsvp-text {
@@ -218,6 +222,114 @@ h1 {
 
 .more-details:hover .md-arrow {
     transform: translateY(4px);
+}
+
+/* Wedding loader styles */
+.wedding-loader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(240, 234, 224, 0.95), rgba(255, 255, 255, 0.9));
+    z-index: 9999;
+}
+
+.wedding-loader__content {
+    text-align: center;
+}
+
+.wedding-loader__heart {
+    width: 96px;
+    height: 88px;
+    margin: 0 auto 18px;
+    position: relative;
+    transform: rotate(-45deg) scale(1);
+}
+
+.wedding-loader__heart .heart-left,
+.wedding-loader__heart .heart-right {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(180deg, #f7e7ce, #d3c5ad);
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    box-shadow: 0 8px 24px rgba(102, 85, 64, 0.08) inset;
+}
+
+.wedding-loader__heart .heart-left {
+    left: 0;
+}
+
+.wedding-loader__heart .heart-right {
+    right: 0;
+}
+
+.wedding-loader__heart::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 28px;
+    width: 72px;
+    height: 56px;
+    background: linear-gradient(180deg, #f7e7ce, #d3c5ad);
+    border-radius: 10px;
+}
+
+/* Heart beat */
+.wedding-loader__heart {
+    animation: heart-beat 1.2s cubic-bezier(.34,.07,.43,1.01) infinite;
+    transform-origin: center;
+}
+
+.wedding-loader__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    color: #4d6453;
+    margin: 0;
+}
+
+.wedding-loader__subtitle {
+    margin-top: 6px;
+    color: #6b5b4a;
+    font-size: 14px;
+    opacity: 0.9
+}
+
+@keyframes heart-beat {
+    0% { transform: rotate(-45deg) scale(1); }
+    14% { transform: rotate(-45deg) scale(1.18); }
+    28% { transform: rotate(-45deg) scale(0.98); }
+    42% { transform: rotate(-45deg) scale(1.08); }
+    70% { transform: rotate(-45deg) scale(0.995); }
+    100% { transform: rotate(-45deg) scale(1); }
+}
+
+/* Slight individual scaling for the two halves to add organic feel */
+.wedding-loader__heart .heart-left,
+.wedding-loader__heart .heart-right,
+.wedding-loader__heart::after {
+    transform-origin: center;
+    animation: heart-piece 1.2s cubic-bezier(.34,.07,.43,1.01) infinite;
+}
+
+@keyframes heart-piece {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.06); }
+    28% { transform: scale(0.99); }
+    42% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+/* Slightly lift hero content for better visual balance */
+.hero-content-up {
+    transform: translateY(-6vh);
+}
+
+.hero-form-content-up {
+    transform: translateY(-12vh);
 }
 
 html {
