@@ -108,15 +108,7 @@
         }
     </script>
     <!-- Preload hero background to avoid gradual load on first visit -->
-    <link rel="preload" href="image.jpg" as="image">
-    <script>
-        (function(){
-            try {
-                var img = new Image();
-                img.src = 'image.jpg';
-            } catch (e) { }
-        })();
-    </script>
+    <link rel="preload" href="image.webp" as="image" fetchpriority="high">
 </head>
 
 <body
