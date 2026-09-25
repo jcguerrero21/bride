@@ -77,6 +77,76 @@ h1 {
     animation: fadeIn 1s ease-out 1.6s forwards;
 }
 
+/* Celebración cuando el contador llega a cero */
+.celebracion-boda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: celebracionPop 1.2s cubic-bezier(.2, .9, .3, 1.2) both;
+}
+
+.celebracion-titulo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: clamp(30px, 6vw, 44px);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+    animation: celebracionBrillo 2.4s ease-in-out 1.2s infinite;
+}
+
+.celebracion-sub {
+    font-family: 'Cy Grotesk Key', sans-serif;
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+@media (min-width: 768px) {
+    .celebracion-sub {
+        font-size: 13px;
+    }
+}
+
+@keyframes celebracionPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.06);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes celebracionBrillo {
+    0%, 100% {
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    50% {
+        text-shadow: 0 0 28px rgba(247, 231, 206, 0.95), 0 2px 18px rgba(0, 0, 0, 0.35);
+    }
+}
+
+.confeti-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10002;
+}
+
 .texto-proximamente {
     font-family: 'Cy Grotesk Key', sans-serif;
     opacity: 0;

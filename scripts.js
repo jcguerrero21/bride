@@ -24,9 +24,107 @@
   const segundosEl = document.getElementById("segundos");
   if (!diasEl || !horasEl || !minutosEl || !segundosEl) return;
   const fechaBoda = new Date("2026-09-26T00:00:00").getTime();
+
+  function celebrar() {
+    const cont = document.querySelector(".contador-boda");
+    if (cont) {
+      cont.innerHTML =
+        "<div class='celebracion-boda'>" +
+          "<p class='celebracion-titulo'>¡Hoy nos casamos!</p>" +
+          "<p class='celebracion-sub'>Gracias por compartir este día con nosotros</p>" +
+        "</div>";
+    }
+    // On first load, wait for the hero intro animations before the confetti
+    setTimeout(lanzarConfeti, performance.now() < 2000 ? 1600 : 0);
+  }
+
+  function lanzarConfeti() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const canvas = document.createElement('canvas');
+    canvas.className = 'confeti-canvas';
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const resize = () => {
+      canvas.width = innerWidth * dpr;
+      canvas.height = innerHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    const colores = ['#f7e7ce', '#d3c5ad', '#ecbda4', '#947c59', '#ffffff', '#fecdb4'];
+    const piezas = [];
+    for (let i = 0; i < 160; i++) {
+      piezas.push({
+        x: Math.random() * innerWidth,
+        y: -20 - Math.random() * innerHeight * 0.6,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: 2 + Math.random() * 3,
+        rot: Math.random() * Math.PI * 2,
+        vr: (Math.random() - 0.5) * 0.2,
+        osc: Math.random() * Math.PI * 2,
+        size: 6 + Math.random() * 6,
+        color: colores[i % colores.length],
+        corazon: Math.random() < 0.3
+      });
+    }
+
+    function dibujarCorazon(s) {
+      ctx.beginPath();
+      ctx.moveTo(0, -s * 0.2);
+      ctx.bezierCurveTo(0, -s * 0.5, -s * 0.5, -s * 0.5, -s * 0.5, -s * 0.2);
+      ctx.bezierCurveTo(-s * 0.5, s * 0.1, 0, s * 0.3, 0, s * 0.5);
+      ctx.bezierCurveTo(0, s * 0.3, s * 0.5, s * 0.1, s * 0.5, -s * 0.2);
+      ctx.bezierCurveTo(s * 0.5, -s * 0.5, 0, -s * 0.5, 0, -s * 0.2);
+      ctx.fill();
+    }
+
+    const inicio = performance.now();
+    const duracion = 7000;
+    function frame(t) {
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      const emitiendo = t - inicio < duracion;
+      for (let i = piezas.length - 1; i >= 0; i--) {
+        const p = piezas[i];
+        p.osc += 0.05;
+        p.x += p.vx + Math.sin(p.osc) * 0.6;
+        p.y += p.vy;
+        p.rot += p.vr;
+        if (p.y > innerHeight + 20) {
+          if (emitiendo) { p.y = -20; p.x = Math.random() * innerWidth; }
+          else { piezas.splice(i, 1); continue; }
+        }
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.color;
+        if (p.corazon) {
+          dibujarCorazon(p.size * 1.4);
+        } else {
+          ctx.scale(1, Math.cos(p.osc));
+          ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+        }
+        ctx.restore();
+      }
+      if (piezas.length) {
+        requestAnimationFrame(frame);
+      } else {
+        window.removeEventListener('resize', resize);
+        canvas.remove();
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
   function actualizarContador() {
     const ahora = new Date().getTime();
     const distancia = fechaBoda - ahora;
+    if (distancia <= 0) {
+      clearInterval(intervalo);
+      celebrar();
+      return;
+    }
     const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
     const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
@@ -36,11 +134,6 @@
     horasEl.innerText = formatoDosDigitos(horas);
     minutosEl.innerText = formatoDosDigitos(minutos);
     segundosEl.innerText = formatoDosDigitos(segundos);
-    if (distancia < 0) {
-      clearInterval(intervalo);
-      const cont = document.querySelector(".contador-boda");
-      if (cont) cont.innerHTML = "<p class='text-xl tracking-[0.2em] uppercase'>¡Hoy es el gran día!</p>";
-    }
   }
   const intervalo = setInterval(actualizarContador, 1000);
   actualizarContador();
