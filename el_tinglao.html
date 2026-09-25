@@ -3,10 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <link rel="stylesheet" href="./output.css" />
     <title>La Finca - Laura &amp; Raúl</title>
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="img/finca.webp" as="image" fetchpriority="high" />
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap"
@@ -14,123 +16,13 @@
     />
     <!-- Material Symbols -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0&amp;icon_names=celebration,child_care,download,gavel,key,local_parking,north_east,notifications_off,restaurant,schedule&amp;display=block"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "surface-container-low": "#f4f3f1",
-              "secondary-fixed": "#ffdbca",
-              "on-background": "#1a1c1a",
-              "tertiary-fixed": "#d0e9d4",
-              "surface-variant": "#e3e2e0",
-              "on-primary-container": "#726753",
-              "on-error": "#ffffff",
-              "inverse-surface": "#2f312f",
-              background: "#faf9f6",
-              "primary-container": "#f7e7ce",
-              error: "#ba1a1a",
-              "tertiary-container": "#d6efda",
-              "surface-container": "#efeeeb",
-              "on-secondary": "#ffffff",
-              "surface-bright": "#faf9f6",
-              "secondary-fixed-dim": "#ecbda4",
-              "on-tertiary-fixed-variant": "#364c3c",
-              "error-container": "#ffdad6",
-              outline: "#7d766c",
-              primary: "#685d4a",
-              "on-primary-fixed": "#221b0b",
-              "on-tertiary-container": "#576e5c",
-              "secondary-container": "#fecdb4",
-              "tertiary-fixed-dim": "#b4cdb8",
-              "surface-container-lowest": "#ffffff",
-              "on-error-container": "#93000a",
-              secondary: "#7a5642",
-              "inverse-primary": "#d3c5ad",
-              tertiary: "#4d6453",
-              "surface-container-highest": "#e3e2e0",
-              "surface-tint": "#685d4a",
-              "on-secondary-container": "#795541",
-              "on-primary-fixed-variant": "#4f4533",
-              "on-primary": "#ffffff",
-              "on-tertiary-fixed": "#0b2013",
-              "on-secondary-fixed": "#2e1506",
-              "on-secondary-fixed-variant": "#603f2d",
-              "on-tertiary": "#ffffff",
-              "primary-fixed": "#f0e0c8",
-              "inverse-on-surface": "#f2f1ee",
-              "primary-fixed-dim": "#d3c5ad",
-              "surface-container-high": "#e9e8e5",
-              "surface-dim": "#dbdad7",
-              surface: "#faf9f6",
-              "on-surface": "#1a1c1a",
-              "outline-variant": "#cec5ba",
-              "on-surface-variant": "#4b463d",
-            },
-            borderRadius: {
-              DEFAULT: "0.125rem",
-              lg: "0.25rem",
-              xl: "0.5rem",
-              full: "0.75rem",
-            },
-            spacing: {
-              unit: "8px",
-              gutter: "24px",
-              "margin-mobile": "20px",
-              "margin-desktop": "64px",
-              "container-max": "1140px",
-            },
-            fontFamily: {
-              "display-lg-mobile": ["Playfair Display"],
-              "body-md": ["Plus Jakarta Sans"],
-              "label-caps": ["Plus Jakarta Sans"],
-              "display-lg": ["Playfair Display"],
-              "headline-sm": ["Playfair Display"],
-              "headline-md": ["Playfair Display"],
-              "body-lg": ["Plus Jakarta Sans"],
-            },
-            fontSize: {
-              "display-lg-mobile": [
-                "36px",
-                { lineHeight: "1.2", fontWeight: "600" },
-              ],
-              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
-              "label-caps": [
-                "12px",
-                {
-                  lineHeight: "1.0",
-                  letterSpacing: "0.1em",
-                  fontWeight: "600",
-                },
-              ],
-              "display-lg": [
-                "48px",
-                {
-                  lineHeight: "1.1",
-                  letterSpacing: "-0.02em",
-                  fontWeight: "600",
-                },
-              ],
-              "headline-sm": ["24px", { lineHeight: "1.4", fontWeight: "500" }],
-              "headline-md": ["32px", { lineHeight: "1.3", fontWeight: "500" }],
-              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
-            },
-          },
-        },
-      };
-    </script>
-
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=2" />
+    <!-- Compiled Tailwind; must load last to keep utility precedence -->
+    <link rel="stylesheet" href="output.css?v=2" />
   </head>
 
   <body class="bg-background text-on-surface font-body-md antialiased">
@@ -172,9 +64,7 @@
           <div
             class="w-full h-full bg-cover bg-center scrolling-bg"
             data-alt="High-resolution, professional architectural photography of Mas de Can Riera. Enhance the colors, lighting, and detail of the original building. The sky should be a clear, soft blue, and the stone textures of the farmhouse should be sharp and warm. Maintain the exact same perspective and structure of the building as in the reference image, but with a more polished, high-end wedding venue aesthetic. No people, no blur."
-            style="
-              background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBUnsQvhX94CPy4Tsh70ONxcKqOnr8-TzZ3UxbPeyB20DPTdmGvvTjLYiHMZKOBbfSiURe8QAKQGl2xwLim_xMxZKGXotkxCxmAT5EYN5eWkGWfPUPHITFfYTwY6im2AsXZnCF9YqDcra3e46xJ5RL9XRJyP5GY8jsWIoU-1v3gszEglUv7_oxJl7FXcIDxh0V4jT6O5y1oTyy9lTOWAtQ6K0EbO37dQvZxCP5mnzitPKh9tmZQD686l-tPsCvBnZQhNHEV_GSsdEtT&quot;);
-            "
+            style="background-image: url('img/finca.webp')"
           ></div>
         </div>
         <div class="relative z-10 text-center px-margin-mobile p-6 rounded-md">
@@ -217,8 +107,12 @@
             class="mb-10 overflow-hidden rounded-sm border border-outline/10"
           >
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxXqsszJq5cBIugiqqbFU27kqdK362CwbOecXbuG9IpaBm4adxItt-8hkG1l9A7M0pv7BVeFEhc_-mQROSYg70aAxw0y9WUzt_cAecRJGxLujmhvelYHH40ZKdVr8P_f_u6300Bmfqnukn4-7V5_A5DGj40-_2jj_dU43dfdVLET1scoJK7G1A22VdHBKg0e8zWxPc-5Vdw63J-JPPDwU0U_uZaHEHiUCZUTbE0nxf6KDieBaGYNXm8n8sLw1Vww2-78XWmZg44nBF"
+              src="img/celebracion.webp"
               alt="Ilustración de celebración"
+              width="512"
+              height="293"
+              loading="lazy"
+              decoding="async"
               class="w-full h-auto object-cover"
             />
           </div>
@@ -363,7 +257,8 @@
           <a
             class="block w-full text-center bg-primary text-on-primary font-label-caps text-label-caps py-5 px-8 tracking-[0.2em] hover:bg-primary/90 active:scale-[0.98] transition-all"
             href="https://www.google.com/maps/search/?api=1&amp;query=Mas+de+Can+Riera+Palau-solità+i+Plegamans"
-            target="_blank"∫∫
+            target="_blank"
+            rel="noopener noreferrer"
           >
             ABRIR EN GOOGLE MAPS
           </a>
@@ -373,6 +268,6 @@
     <!-- 5. Bottom Navigation (Active: "La Finca") -->
 
     <!-- Footer (Shared Component Logic) -->
-    <script src="scripts.js" defer></script>
+    <script src="scripts.js?v=2" defer></script>
   </body>
 </html>

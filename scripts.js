@@ -10,6 +10,7 @@
     });
   }, observerOptions);
   document.querySelectorAll('section').forEach(section => {
+    section.classList.remove('opacity-100','translate-y-0');
     section.classList.add('transition-all','duration-700','opacity-0','translate-y-10');
     observer.observe(section);
   });
@@ -100,7 +101,6 @@
       const href = a.getAttribute('href') || '';
       const target = a.getAttribute('target');
       const isExternal = /^https?:\/\//i.test(href);
-      console.log('[menu] click on', { href, target, isExternal, id: a.id, text: a.textContent && a.textContent.trim() });
       if (isExternal || target === '_blank') return; // don't auto-close for external/new-tab links
       // If debug mode is on, prevent navigation so console is preserved
       // allow normal navigation but close overlay first
